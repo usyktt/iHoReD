@@ -148,3 +148,17 @@ as
 	From PROFESSIONS
 	Where ISSTATIC = @Is_Static;
 Go
+
+--Get users firstname, lastname with some profession
+Create Procedure Get_Doctors_With_Some_Profession
+	@Profession_Name nvarchar(30)
+as
+	Select FIRSTNAME, LASTNAME
+	From USERS
+	Where IDROLE = 
+	(
+		Select IDRoles
+		From ROLES, PROFESSIONS
+		Where ROLENAME = 'doctor' and PROFESSINNAME = @Profession_Name
+	);
+Go
