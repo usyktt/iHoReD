@@ -8,7 +8,7 @@ namespace HoReD_Entts.Services
 {
     class FakeDbContext: IDbContext
     {
-        private readonly SqlConnection _myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["FakeConString"].ConnectionString);
+        private readonly SqlConnection _myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConString"].ConnectionString);
 
         public FakeDbContext()
         {
@@ -20,9 +20,7 @@ namespace HoReD_Entts.Services
         {
             var command = new SqlCommand(cmd, _myConnection);
             var reader = command.ExecuteReader();
-
             var result = new StringBuilder();
-
             if (reader.Read())
             {
                 foreach (var value in reader)
