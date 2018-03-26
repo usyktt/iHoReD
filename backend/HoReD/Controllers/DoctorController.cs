@@ -7,9 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using HoReD_Entts.Services;
 
 namespace HoReD.Controllers
 {
+    /// <summary>
+    /// Controller that represents information about Doctors
+    /// </summary>
     public class DoctorController : ApiController
     {
         [HttpGet]
@@ -35,6 +39,11 @@ namespace HoReD.Controllers
             return doctor;
         }
 
+        /// <summary>
+        /// Gets full infiormation about Doctors in database
+        /// </summary>
+        /// <returns>List of instances of the class DoctorInfo</returns>
+        /// <example>http://localhost:*****/api/Doctor/</example>
         [HttpGet]
         [ActionName("GetDoctors")]
         public List<DoctorInfo> GetDoctors()
