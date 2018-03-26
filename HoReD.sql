@@ -139,3 +139,12 @@ SELECT  PROFESSINNAME FROM PROFESSIONS
 
 EXEC GETPROFESSION 8;
 GO
+
+--Get professions, which is or isn`t static
+Create Procedure Get_List_Professions
+	@Is_Static BIT
+as
+	Select PROFESSINNAME 
+	From PROFESSIONS
+	Where ISSTATIC = @Is_Static;
+Go
