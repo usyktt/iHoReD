@@ -138,27 +138,29 @@ SELECT  PROFESSINNAME FROM PROFESSIONS
 		SELECT IDPROFESSION FROM DOCTORS WHERE IDDoctors=@IDDOC);
 
 EXEC GETPROFESSION 8;
-GO
+
+
+--Get users firstname, lastname with some profession
+Go
+create procedure Get_Doctors_With_Some_Profession
+	@Profession_Name nvarchar (30)
+as
+	select FIRSTNAME, LASTNAME
+	from USERS
+	inner join DOCTORS on  USERS.IDUsers = DOCTORS.IDDoctors
+	where DOCTORS.IDPROFESSION = 
+	(
+		select IDProfessins
+		from PROFESSIONS
+		where PROFESSINNAME = @Profession_Name
+	);
+
 
 --Get professions, which is or isn`t static
+Go
 Create Procedure Get_List_Professions
 	@Is_Static BIT
 as
 	Select PROFESSINNAME 
 	From PROFESSIONS
 	Where ISSTATIC = @Is_Static;
-Go
-
---Get users firstname, lastname with some profession
-Create Procedure Get_Doctors_With_Some_Profession
-	@Profession_Name nvarchar(30)
-as
-	Select FIRSTNAME, LASTNAME
-	From USERS
-	Where IDROLE = 
-	(
-		Select IDRoles
-		From ROLES, PROFESSIONS
-		Where ROLENAME = 'doctor' and PROFESSINNAME = @Profession_Name
-	);
-Go
