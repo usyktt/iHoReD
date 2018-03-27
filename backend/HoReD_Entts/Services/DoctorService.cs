@@ -15,7 +15,7 @@ namespace HoReD_Entts.Services
         public Doctor GetDoctorById(int id)
         {
             var cmd = $"Select * from Doctors where IDDoctors = {id}";
-            _dbContext.OpenConnection();
+           // _dbContext.OpenConnection();
             var str = _dbContext.ExecuteSqlQuery(cmd, '*');
             var values = str.Split('*');
             var doctor = new Doctor
@@ -36,8 +36,8 @@ namespace HoReD_Entts.Services
 
         public List<DoctorInfo> GetDoctors()
         {
-            var cmd = "GETINFOABOUTDOCTORS";
-            _dbContext.OpenConnection();
+            var cmd = "exec GETINFOABOUTDOCTORS";
+            //_dbContext.OpenConnection();
             var str = _dbContext.ExecuteSqlQuery(cmd, '*');
             var values = str.Split('*');
             List<DoctorInfo> list = new List<DoctorInfo>();

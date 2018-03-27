@@ -23,11 +23,12 @@ namespace HoReD_Entts.Services
 
             var result = new StringBuilder();
 
-            if (reader.Read())
+            while (reader.Read())
             {
-                foreach (var value in reader)
+               
+                for (int i = 0; i < 8; i++)
                 {
-                    result.Append(value);
+                    result.Append(reader.GetValue(i));
                     result.Append(separatedChar);
                 }
             }
