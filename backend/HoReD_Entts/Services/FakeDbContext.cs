@@ -16,7 +16,7 @@ namespace HoReD_Entts.Services
         }
 
         //Execute query, which return one string, where values separated by char
-        public string ExecuteSqlQuery(string cmd, char separatedChar)
+        public string ExecuteSqlQuery(string cmd, char separatedChar, Dictionary<string, object> param)
         {
             var command = new SqlCommand(cmd, _myConnection);
             var reader = command.ExecuteReader();

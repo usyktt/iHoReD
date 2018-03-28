@@ -11,30 +11,12 @@ namespace HoReD_Entts.Services
         {
             _dbContext = dbContext;
         }
-
-        public Doctor GetDoctorById(int id)
-        {
-            var cmd = $"Select * from Doctors where IDDoctors = {id}";
-            var str = _dbContext.ExecuteSqlQuery(cmd, '*');
-            var values = str.Split('*');
-            var doctor = new Doctor
-            {
-                Id = Convert.ToInt32(values.GetValue(0)),
-                IdProfession = Convert.ToInt32(values.GetValue(1)),
-                StartHour = TimeSpan.Parse(values.GetValue(2).ToString()),
-                EndHour = TimeSpan.Parse(values.GetValue(3).ToString()),
-                EmployingDate = Convert.ToDateTime(values.GetValue(4)),
-                Image = values.GetValue(5).ToString()
-            };
-            _dbContext.Dispose();
-
-            return doctor;
-        }
-
+        
         public List<DoctorInfo> GetDoctors()
         {
             const string cmd = "GETINFOABOUTDOCTORS";
-            var str = _dbContext.ExecuteSqlQuery(cmd, '*');
+            var param=new Dictionary<string,object>();
+            var str = _dbContext.ExecuteSqlQuery(cmd, '*',param);
             var values = str.Split('*');
             var list = new List<DoctorInfo>();
             for (int i = 0; i < (values.Length-1); i+=8)
@@ -51,6 +33,45 @@ namespace HoReD_Entts.Services
                     Image = values.GetValue(i + 7).ToString()
                 };
                 list.Add(doctor);
+
+            }
+            _dbContext.Dispose();
+            return list;
+        }
+
+        public List<string> GetProfessions(bool isStatic)
+        {
+            const string cmd = "Get_List_Professions";
+            var param = new Dictionary<string, object>()
+            {
+                {"@Is_Static", isStatic}
+            };
+            var str = _dbContext.ExecuteSqlQuery(cmd, '*',param);
+            var values = str.Split('*');
+            var list = new List<string>();
+            for (int i = 0; i < values.Length; i ++)
+            {
+                list.Add(values.GetValue(i).ToString());
+
+            }
+            _dbContext.Dispose();
+            return list;
+        }
+
+        public List<string[]> GetDoctorsByProfession(string profession)
+        {
+            const string cmd = "Get_Doctors_With_Some_Profession";
+            var param = new Dictionary<string, object>()
+            {
+                {"@Profession_Name", profession}
+            };
+            var str = _dbContext.ExecuteSqlQuery(cmd, '*', param);
+            var values = str.Split('*');
+            var list = new List<string[]>();
+            for (int i = 0; i < (values.Length-1); i+=2)
+            {
+                string[] name = {values.GetValue(0+i).ToString(), values.GetValue(1+i).ToString()};
+                list.Add(name);
 
             }
             _dbContext.Dispose();
