@@ -1,8 +1,8 @@
-﻿using HoReD_Entts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using HoReD_Entts.Services;
+using Entities;
+using Entities.Services;
 
 namespace HoReD.Controllers
 {
