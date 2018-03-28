@@ -248,9 +248,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HoReD_Entts\HoReD_Entts.csproj">
-      <Project>{d1a7848c-3c77-4112-87f7-30f298ca9eae}</Project>
-      <Name>HoReD_Entts</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{811EDA95-6B82-4EAA-962E-418FB04E82C4}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
