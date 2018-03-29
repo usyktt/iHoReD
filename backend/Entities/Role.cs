@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HoReD_Entts
+﻿namespace Entities
 {
     class Role
     {

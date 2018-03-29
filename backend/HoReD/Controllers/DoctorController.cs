@@ -1,8 +1,8 @@
-﻿using HoReD_Entts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using HoReD_Entts.Services;
+using Entities;
+using Entities.Services;
 
 namespace HoReD.Controllers
 {
@@ -11,28 +11,27 @@ namespace HoReD.Controllers
     /// </summary>
     public class DoctorController : ApiController
     {
-
-        [HttpGet]
-        [ActionName("GetDoctorByID")]
-        public Doctor Get(int id)
-        {
-            var dbContext=new DbContext();
-            var doctorService=new DoctorService(dbContext);
-            return doctorService.GetDoctorById(id);
-        }
-
         /// <summary>
         /// Gets full infiormation about Doctors in database
         /// </summary>
         /// <returns>List of instances of the class DoctorInfo</returns>
         /// <example>http://localhost:*****/api/Doctor/</example>
         [HttpGet]
-        [ActionName("GetDoctors")]
         public List<DoctorInfo> GetDoctors()
         {
             var dbContext = new DbContext();
             var doctorService = new DoctorService(dbContext);
             return doctorService.GetDoctors();
         }
+
+        [HttpGet]
+        [Route("GetDoctors/{profession}")]
+        public List<string[]> GetDoctorsByProfession(string profession)
+        {
+            var dbContext = new DbContext();
+            var doctorService = new DoctorService(dbContext);
+            return doctorService.GetDoctorsByProfession(profession);
+        }
+
     }
 }
