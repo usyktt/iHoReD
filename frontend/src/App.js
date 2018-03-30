@@ -45,32 +45,31 @@ function Logbar(props){
         </div>
         <form className="was-validated" noValidate>
   <div className="form-row">
-  <div className="form-group col-md-6">
+  <div className="form-group col-sm-6 col-xs-12">
       <input type="text" className="form-control" id="inputFName" placeholder="First Name" required/>
       <div className="invalid-tooltip">
         Plese,enter your first name!
       </div>
     </div>
-    <div className="form-group col-md-6">
+    <div className="form-group col-sm-6 col-xs-12">
       <input type="text" className="form-control" id="inputLName" placeholder="Last Name" required/>
       <div className="invalid-tooltip">
         Plese,enter your last name!
       </div>
     </div>
-    <div className="form-group col-md-6">
+    <div className="form-group col-sm-6 col-xs-12">
       <input type="email" className="form-control" id="inputEmail4" placeholder="Email" required/>
       <div className="invalid-tooltip">
         Plese,enter valid email!
       </div>
     </div>
-    <div className="form-group col-md-6">
+    <div className="form-group col-sm-6 col-xs-12">
       <input type="password" className="form-control" id="inputPassword4" placeholder="Password" required/>
       <div className="invalid-tooltip">
         Plese,enter your password!
       </div>
     </div>
-  </div>
-  <div className="form-group">
+    <div className="form-group col-sm-6 col-xs-12">
     <div className="form-check">
       <input className="form-check-input" type="checkbox" id="gridCheck"/>
       <label className="form-check-label" htmlFor="gridCheck">
@@ -79,9 +78,29 @@ function Logbar(props){
     </div>
   </div>
   <div className="modal-footer">
-          <button type="submit" className="btn btn-primary float-left">Sign up</button>
-          <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+  <div className="form-group col-sm-6 col-xs-12">
+  <div className="container btn-toolbar">
+  <div className="row">
+  <div className="col-12 col-sm-6 col-md-6">
+        <div className="previous">
+        <button type="submit" className="btn btn-primary btn-lg mr-5">Sign up
+              <span className="glyphicon glyphicon-chevron-left"></span>
+          </button>
         </div>
+    </div>
+    <div className="col-12 col-sm-6 col-md-6">   
+        <div className="next">
+        <button type="button" className="btn btn-danger btn-lg mr-5" data-dismiss="modal">Close
+              <span className="glyphicon glyphicon-chevron-right"></span>
+          </button>
+        </div>
+    </div>
+    </div>
+        </div>
+  </div>
+  </div>
+  
+  </div>
 </form>
       </div>
     </div>
