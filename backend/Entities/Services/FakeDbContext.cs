@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace HoReD_Entts.Services
+namespace Entities.Services
 {
     class FakeDbContext: IDbContext
     {
@@ -16,7 +15,7 @@ namespace HoReD_Entts.Services
         }
 
         //Execute query, which return one string, where values separated by char
-        public string ExecuteSqlQuery(string cmd, char separatedChar)
+        public string ExecuteSqlQuery(string cmd, char separatedChar, Dictionary<string, object> param)
         {
             var command = new SqlCommand(cmd, _myConnection);
             var reader = command.ExecuteReader();

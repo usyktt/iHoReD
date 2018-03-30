@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HoReD_Entts
+﻿namespace Entities
 {
     public class User
     {
