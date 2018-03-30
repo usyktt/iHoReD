@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 //import Logbar from './Logbar.js';
-
+import axios from 'axios';
 class App extends Component {
   render() {
     return (
-        <div className="App">
-        <Logbar func={this.myfun}/>
-        <div className="wrapper container">
-        <div className='row'>
+        <div className="App container-fluid">
+        <Logbar/>
+        <div className="wrapper row mt-4">
         <ProfessionsTable/>
         <ProfessionTable/>
         <Datepicker/>
-        </div>
         </div>
         <Footerbar/>
       </div>
@@ -22,16 +20,16 @@ class App extends Component {
 }
 
 function Logbar(props){
-  return <div className='mb-3'>
-  			<nav className="navbar navbar-expand-sm bg-dark navbar-dark sticky-top navbar-toggleable-md">
- 			<p className='text-white mr-1'>Hello, </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'> anonymous!</p>
+  return <div>
+  			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
+ 			<p className='text-white mr-1'> </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'></p>
    			<div className = "container-fluid justify-content-center align-items-center navbar-collapse collapse ">
                 <form className="form-inline" action="/action_page.php">
                     <input className="form-control mr-3" type="text" placeholder="Login"/> 
                     <input className="form-control mr-3" type="text" placeholder="Password"/> 
                     <div>
-                    <button className="btn btn-primary" type="submit">Sign in</button>
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">Sign up</button> 
+                    <button className="btn btn-info mr-2" type="submit">Sign in</button>
+                    <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign up</button> 
                     </div>
                     </form> 
                     </div>
@@ -44,7 +42,7 @@ function Logbar(props){
           <button type="button" className="close" data-dismiss="modal">&times;</button>
         </div>
         <form className="was-validated" noValidate>
-  <div className="form-row">
+  <div className="form-row mb-3">
   <div className="form-group col-sm-6 col-xs-12">
       <input type="text" className="form-control" id="inputFName" placeholder="First Name" required/>
       <div className="invalid-tooltip">
@@ -57,6 +55,8 @@ function Logbar(props){
         Plese,enter your last name!
       </div>
     </div>
+    </div>
+    <div className="form-row mb-3">
     <div className="form-group col-sm-6 col-xs-12">
       <input type="email" className="form-control" id="inputEmail4" placeholder="Email" required/>
       <div className="invalid-tooltip">
@@ -69,6 +69,7 @@ function Logbar(props){
         Plese,enter your password!
       </div>
     </div>
+    </div>
     <div className="form-group col-sm-6 col-xs-12">
     <div className="form-check">
       <input className="form-check-input" type="checkbox" id="gridCheck"/>
@@ -77,29 +78,17 @@ function Logbar(props){
       </label>
     </div>
   </div>
-  <div className="modal-footer">
-  <div className="form-group col-sm-6 col-xs-12">
-  <div className="container btn-toolbar">
+  <div className="modal-footer form-group">
   <div className="row">
   <div className="col-12 col-sm-6 col-md-6">
-        <div className="previous">
-        <button type="submit" className="btn btn-primary btn-lg mr-5">Sign up
-              <span className="glyphicon glyphicon-chevron-left"></span>
+        <button type="submit" className="btn btn-info btn-lg">Sign up
           </button>
-        </div>
     </div>
     <div className="col-12 col-sm-6 col-md-6">   
-        <div className="next">
-        <button type="button" className="btn btn-danger btn-lg mr-5" data-dismiss="modal">Close
-              <span className="glyphicon glyphicon-chevron-right"></span>
+        <button type="button" className="btn btn-danger btn-lg" data-dismiss="modal">Close
           </button>
         </div>
     </div>
-    </div>
-        </div>
-  </div>
-  </div>
-  
   </div>
 </form>
       </div>
@@ -110,10 +99,12 @@ function Logbar(props){
 
 function Datepicker(props){
   return <div className="col sm-2 md-9 lg-9 xl-9">
-  <div className="container">
-      <h2>Поточний розклад:</h2>
+  <div className="container table-responsive">
       <table className="table table-bordered table-hover table-light">
         <thead>
+        <tr>
+            <th colSpan="8" className="bg-info text-white">Поточний розклад:</th>
+          </tr>
           <tr>
             <th>-/-</th>
             <th>Sunday</th>
@@ -221,38 +212,21 @@ function Footerbar(props){
 class ProfessionsTable extends React.Component{
   constructor(){
     super();
-    this.state={
-      professionsdata: [
-        {
-          'name': 'Стоматолог',
-          'isStatic':true
-        },
-        {
-          'name': 'Отоларинголог',
-          'isStatic':true
-        },
-        {
-          'name': 'Терапевт',
-          'isStatic':true
-        },
-        {
-          'name': 'Хірург',
-          'isStatic':false
-        },
-        {
-          'name': 'Кардіолог',
-          'isStatic':false
-        } 
-      ]
-    }
-  }
-  render(){
-    return <div className = "container col sm-1 md-1 lg-1 xl-1 ml-2">
-     <h2>Наявні лікарі:</h2>
-     <div className="list-group">
-      {this.state.professionsdata.map((person, i) => <ProfessionsTableRow key = {i} professionsdata = {person} />)}
-     </div>
+    axios.get('http://localhost:58511/ProfessionsStatic')
+    .then(res => {
 
+      res.data.forEach(doctor => {
+        document.getElementById("professions").innerHTML 
+         += '<a href="javascript:void(0)" class="list-group-item list-group-item-active">'
+         + doctor + '</a>';
+      });
+    });
+  };
+  render(){
+    return <div className = "container col sm-1 md-1 lg-1 xl-1">
+     <div className="list-group" id="professions">
+     <a href="#" className="list-group-item active bg-info">Наявні лікарі:</a>
+     </div>
   </div>
 }
 }
@@ -267,20 +241,20 @@ class ProfessionsTableRow extends React.Component {
 class ProfessionTable extends React.Component{
   constructor(){
     super();
-    this.state={
-      professiondata:[
-        {name : 'Іваненко І. І.'},
-        {name : 'Петренко П. П.'},
-        {name : 'Міхайлов М. І.'},
-        {name : 'Кандидат від. народу.'}
-      ]
-    }
+    axios.get('http://localhost:58511/api/Doctor')
+    .then(res => {
+
+      res.data.forEach(doctor => {
+        document.getElementById("doctors").innerHTML 
+         += '<a href="javascript:void(0)" class="list-group-item list-group-item-active">'
+         + doctor.FirstName + ' ' + doctor.LastName + '</a>';
+      });
+    });
   };
   render(){
   return  <div className="container col sm-1 md-1 lg-1 xl-1">
-                <h2>Оберіть лікаря:</h2>
-                <div className="list-group">
-                {this.state.professiondata.map((person, i) => <ProfessionTableRow key = {i} professiondata = {person} />)}
+                <div className="list-group" id = "doctors">
+                <a href="#" className="list-group-item active bg-info ">Оберіть лікаря:</a>
                 </div>
           </div>
 }

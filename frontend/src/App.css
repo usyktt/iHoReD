@@ -26,3 +26,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.navbar-custom {
+  color: #ccfff5;
+  background-color:#80bfff;
+}
+
+.modal-backdrop {
+  background-color:#66b3ff;
+}
+
+.modal-content {
+  background-color:#cce6ff;
+}
+
+.list-group-item-custom {
+  background-color:#cce6ff;
+}
+
