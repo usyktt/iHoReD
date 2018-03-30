@@ -9,5 +9,9 @@
   <changeSet author="Oleg Rakus" id="V1">
     <sqlFile path="HoReD.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
+  
+  <changeSet author="Mariia shkolyk" id="V1.1">
+    <sqlFile path="TestCommand.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
 
 </databaseChangeLog>
