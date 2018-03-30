@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,7 +10,7 @@ namespace Entities.Services
     public class DbContext : IDbContext
     {
         private readonly SqlConnection _myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConString"].ConnectionString);
- 
+
         public DbContext()
         {
                 _myConnection.Open();
@@ -46,6 +47,29 @@ namespace Entities.Services
         public void OpenConnection()
         {
             _myConnection.Open();
+        }
+
+        public void InsertNewUser(string cmd, IDictionary<string, string> usersInfo)
+        {
+            using (_myConnection)
+            {
+                using (var sqlCommand = new SqlCommand(cmd, _myConnection))
+                {
+                    foreach (var userInfo in usersInfo)
+                    {
+                        sqlCommand.AddParameter(userInfo.Key,userInfo.Value);
+                    }
+
+                    try
+                    {
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
         }
 
         public void Dispose()
