@@ -4,7 +4,11 @@ import './App.css';
 //import Logbar from './Logbar.js';
 import axios from 'axios';
 const base_api_url = process.env.REACT_APP_BASE_API_URL;
-
+var server_url;
+if(process.env.NODE_ENV==="development")
+  server_url="http://localhost:58511"
+else if(process.env.NODE_ENV==="production")
+  server_url="https://hored-backend.azurewebsites.net"
 class App extends Component {
   render() {
     return (
@@ -214,7 +218,7 @@ function Footerbar(props){
 class ProfessionsTable extends React.Component{
   constructor(){
     super();
-    axios.get(base_api_url+'/ProfessionsStatic')
+    axios.get(server_url+'/ProfessionsStatic')
     .then(res => {
 
       res.data.forEach(doctor => {
@@ -243,7 +247,7 @@ class ProfessionsTableRow extends React.Component {
 class ProfessionTable extends React.Component{
   constructor(){
     super();
-    axios.get(base_api_url+'/api/Doctor')
+    axios.get(server_url+'/api/Doctor')
     .then(res => {
 
       res.data.forEach(doctor => {
