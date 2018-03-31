@@ -25,7 +25,7 @@ namespace Entities.Services
                 { "EMAIL", email},
                 { "PASSWORD", password},
             };
-            var cmd = $"insert into USERS(FIRSTNAME, LASTNAME, IDROLE, EMAIL, PASSWORD) values(@firstname, @lastname, 3, @email, @password)";
+            var cmd = "REGISTER_USER";
 
             _dbContext.InsertNewUser(cmd, regInfo);
         }

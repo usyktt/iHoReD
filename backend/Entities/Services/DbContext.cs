@@ -55,9 +55,10 @@ namespace Entities.Services
             {
                 using (var sqlCommand = new SqlCommand(cmd, _myConnection))
                 {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
                     foreach (var userInfo in usersInfo)
                     {
-                        sqlCommand.AddParameter(userInfo.Key,userInfo.Value);
+                        sqlCommand.AddParameter(userInfo.Key, userInfo.Value);
                     }
 
                     try
@@ -66,7 +67,7 @@ namespace Entities.Services
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                        throw new Exception(e.Message);
                     }
                 }
             }
