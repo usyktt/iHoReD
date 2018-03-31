@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 //import Logbar from './Logbar.js';
-
+import axios from 'axios';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+        <div className="App container-fluid">
         <Logbar/>
-        <div class='row'>
+        <div className="wrapper row mt-4">
         <ProfessionsTable/>
         <ProfessionTable/>
         <Datepicker/>
@@ -20,67 +20,98 @@ class App extends Component {
 }
 
 function Logbar(props){
-  return <div class='mb-3'>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top navbar-toggleable-md">
-  <p class='text-white mr-1'>Hello, </p><p class = 'text-white font-weight-bold mr-3' id = 'usernamebar'> anonymous!</p>
-    <div class = "container-fluid justify-content-center align-items-center navbar-collapse collapse ">
-                <form class="form-inline" action="/action_page.php">
-                    <input class="form-control mr-3" type="text" placeholder="Login"/> 
-                    <input class="form-control mr-3" type="text" placeholder="Password"/> 
+  return <div>
+  			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
+ 			<p className='text-white mr-1'> </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'></p>
+   			<div className = "container-fluid justify-content-center align-items-center navbar-collapse collapse ">
+                <form className="form-inline" action="/action_page.php">
+                    <input className="form-control mr-3" type="text" placeholder="Login"/> 
+                    <input className="form-control mr-3" type="text" placeholder="Password"/> 
                     <div>
-                    <button class="btn btn-info mr-3" type="submit">Sign in</button> 
-                    <button class="btn btn-primary" type="submit">Sign up</button> 
+                    <button className="btn btn-info mr-2" type="submit">Sign in</button>
+                    <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign up</button> 
                     </div>
+                    </form> 
+                    </div>
+        </nav>            
+  <div className="modal fade" id="myModal">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h4 className="modal-title">Please, fill in the fields to register:</h4>
+          <button type="button" className="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form className="was-validated" noValidate>
+  <div className="form-row mb-3">
+  <div className="form-group col-sm-6 col-xs-12">
+      <input type="text" className="form-control" id="inputFName" placeholder="First Name" required/>
+      <div className="invalid-tooltip">
+        Plese,enter your first name!
+      </div>
+    </div>
+    <div className="form-group col-sm-6 col-xs-12">
+      <input type="text" className="form-control" id="inputLName" placeholder="Last Name" required/>
+      <div className="invalid-tooltip">
+        Plese,enter your last name!
+      </div>
+    </div>
+    </div>
+    <div className="form-row mb-3">
+    <div className="form-group col-sm-6 col-xs-12">
+      <input type="email" className="form-control" id="inputEmail4" placeholder="Email" required/>
+      <div className="invalid-tooltip">
+        Plese,enter valid email!
+      </div>
+    </div>
+    <div className="form-group col-sm-6 col-xs-12">
+      <input type="password" className="form-control" id="inputPassword4" placeholder="Password" required/>
+      <div className="invalid-tooltip">
+        Plese,enter your password!
+      </div>
+    </div>
+    </div>
+    <div className="form-group col-sm-6 col-xs-12">
+    <div className="form-check">
+      <input className="form-check-input" type="checkbox" id="gridCheck"/>
+      <label className="form-check-label" htmlFor="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <div className="modal-footer form-group">
+  <div className="row">
+  <div className="col-12 col-sm-6 col-md-6">
+        <button type="submit" className="btn btn-info btn-lg">Sign up
+          </button>
+    </div>
+    <div className="col-12 col-sm-6 col-md-6">   
+        <button type="button" className="btn btn-danger btn-lg" data-dismiss="modal">Close
+          </button>
+        </div>
+    </div>
+  </div>
 </form>
-</div>
-</nav>  
-</div>
-}
-function ProfessionsTable1(props){
-  return  <div class="container col sm-1 md-1 lg-1 xl-1">
-            <div class="dropdown">
-                <button type="button" class="btn btn-basic dropdown-toggle" data-toggle="dropdown">
-                Оберіть професію
-                </button>
-                <div class="dropdown-menu">    
-                      <a class="dropdown-item" href="#">Стоматолог</a>
-                      <a class="dropdown-item" href="#">Отоларинголог</a>
-                      <a class="dropdown-item" href="#">Терапевт</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item disabled"  href="#">Хірург</a>
-                      <a class="dropdown-item disabled" href="#">Кардіолог</a>
-                </div>
-          </div>
-</div>
-}
-function ProfessionTable1(props){
-  return  <div class="container col sm-1 md-1 lg-1 xl-1">
-            <div class="dropdown">
-                <button type="button" class="btn btn-basic dropdown-toggle" data-toggle="dropdown">
-                Оберіть лікаря
-                </button>
-                <div class="dropdown-menu">    
-                      <a class="dropdown-item" href="#">Лікар 1</a>
-                      <a class="dropdown-item" href="#">Лікар 2</a>
-                      <a class="dropdown-item" href="#">Лікар 3</a>
-                </div>
-          </div>
+      </div>
+    </div>
+  </div> 
 </div>
 }
 
 function Datepicker(props){
-  return <div class="col sm-2 md-9 lg-9 xl-9">
-  <div class="container">
-      <h2>Поточний розклад:</h2>
-      <table class="table table-bordered table-hover table-light">
+  return <div className="col sm-2 md-9 lg-9 xl-9">
+  <div className="container table-responsive">
+      <table className="table table-bordered table-hover table-light">
         <thead>
+        <tr>
+            <th colSpan="8" className="bg-info text-white">Поточний розклад:</th>
+          </tr>
           <tr>
             <th>-/-</th>
             <th>Sunday</th>
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
-            <th class = "table-primary">Thursday</th>
+            <th className = "table-primary">Thursday</th>
             <th>Friday</th>
             <th>Saturday</th>
           </tr>
@@ -92,7 +123,7 @@ function Datepicker(props){
             <td>-</td>
             <td>-</td>
             <td>-</td>
-            <td class = "table-primary">-</td>
+            <td className = "table-primary">-</td>
             <td>-</td>
             <td>-</td>
           </tr>
@@ -102,7 +133,7 @@ function Datepicker(props){
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td class = "table-primary">-</td>
+                  <td className = "table-primary">-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -112,7 +143,7 @@ function Datepicker(props){
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td class = "table-primary">-</td>
+                  <td className = "table-primary">-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -122,7 +153,7 @@ function Datepicker(props){
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td class = "table-primary">-</td>
+                  <td className = "table-primary">-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -132,7 +163,7 @@ function Datepicker(props){
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td class = "table-primary">-</td>
+                  <td className = "table-primary">-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -142,7 +173,7 @@ function Datepicker(props){
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td class = "table-primary">-</td>
+                  <td className = "table-primary">-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -152,7 +183,7 @@ function Datepicker(props){
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td class = "table-primary">-</td>
+                  <td className = "table-primary">-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -162,7 +193,7 @@ function Datepicker(props){
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td class = "table-primary">-</td>
+                  <td className = "table-primary">-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -171,46 +202,31 @@ function Datepicker(props){
     </div>
   </div>
 }
+
 function Footerbar(props){
   return <div>
-    <p class='font-italic bg-secondary text-white text-center'>Ніхто ще не скаржився на наш сервіс!</p>
+    <p className='font-italic bg-secondary text-white text-center'>Ніхто ще не скаржився на наш сервіс!</p>
   </div>
 }
+
 class ProfessionsTable extends React.Component{
   constructor(){
     super();
-    this.state={
-      professionsdata: [
-        {
-          'name': 'Стоматолог',
-          'isStatic':true
-        },
-        {
-          'name': 'Отоларинголог',
-          'isStatic':true
-        },
-        {
-          'name': 'Терапевт',
-          'isStatic':true
-        },
-        {
-          'name': 'Хірург',
-          'isStatic':false
-        },
-        {
-          'name': 'Кардіолог',
-          'isStatic':false
-        } 
-      ]
-    }
-  }
-  render(){
-    return <div class = "container col sm-1 md-1 lg-1 xl-1 ml-2">
-     <h2>Наявні лікарі:</h2>
-     <div class="list-group">
-      {this.state.professionsdata.map((person, i) => <ProfessionsTableRow key = {i} professionsdata = {person} />)}
-     </div>
+    axios.get('http://localhost:58511/ProfessionsStatic')
+    .then(res => {
 
+      res.data.forEach(doctor => {
+        document.getElementById("professions").innerHTML 
+         += '<a href="javascript:void(0)" class="list-group-item list-group-item-active">'
+         + doctor + '</a>';
+      });
+    });
+  };
+  render(){
+    return <div className = "container col sm-1 md-1 lg-1 xl-1">
+     <div className="list-group" id="professions">
+     <a href="#" className="list-group-item active bg-info">Наявні лікарі:</a>
+     </div>
   </div>
 }
 }
@@ -218,27 +234,27 @@ class ProfessionsTableRow extends React.Component {
   render() {
     var classi = (this.props.professionsdata.isStatic) ? "list-group-item list-group-item-active" : "list-group-item list-group-item-secondary";
      return (
-      <a href="#" class={classi}>{this.props.professionsdata.name}</a>
+      <a href="javascript:void(0)" className={classi}>{this.props.professionsdata.name}</a>
      );
   }
 }
 class ProfessionTable extends React.Component{
   constructor(){
     super();
-    this.state={
-      professiondata:[
-        {name : 'Іваненко І. І.'},
-        {name : 'Петренко П. П.'},
-        {name : 'Міхайлов М. І.'},
-        {name : 'Кандидат від. народу.'}
-      ]
-    }
+    axios.get('http://localhost:58511/api/Doctor')
+    .then(res => {
+
+      res.data.forEach(doctor => {
+        document.getElementById("doctors").innerHTML 
+         += '<a href="javascript:void(0)" class="list-group-item list-group-item-active">'
+         + doctor.FirstName + ' ' + doctor.LastName + '</a>';
+      });
+    });
   };
   render(){
-  return  <div class="container col sm-1 md-1 lg-1 xl-1">
-                <h2>Оберіть лікаря:</h2>
-                <div class="list-group">
-                {this.state.professiondata.map((person, i) => <ProfessionTableRow key = {i} professiondata = {person} />)}
+  return  <div className="container col sm-1 md-1 lg-1 xl-1">
+                <div className="list-group" id = "doctors">
+                <a href="#" className="list-group-item active bg-info ">Оберіть лікаря:</a>
                 </div>
           </div>
 }
@@ -247,7 +263,7 @@ class ProfessionTableRow extends React.Component {
   
   render() {
     return (
-     <a href="#" class="list-group-item list-group-item-active">{this.props.professiondata.name}</a>
+     <a href="javascript:void(0)" className="list-group-item list-group-item-active">{this.props.professiondata.name}</a>
     );     
   }
 }
