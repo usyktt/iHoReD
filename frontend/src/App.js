@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 //import Logbar from './Logbar.js';
 import axios from 'axios';
+const base_api_url = process.env.REACT_APP_BASE_API_URL;
+
 class App extends Component {
   render() {
     return (
@@ -103,7 +105,7 @@ function Datepicker(props){
       <table className="table table-bordered table-hover table-light">
         <thead>
         <tr>
-            <th colSpan="8" className="bg-info text-white">Поточний розклад:</th>
+            <th colSpan="8" className="bg-info text-white">{process.env.NODE_ENV}</th>
           </tr>
           <tr>
             <th>-/-</th>
@@ -212,7 +214,7 @@ function Footerbar(props){
 class ProfessionsTable extends React.Component{
   constructor(){
     super();
-    axios.get('http://localhost:58511/ProfessionsStatic')
+    axios.get(base_api_url+'/ProfessionsStatic')
     .then(res => {
 
       res.data.forEach(doctor => {
@@ -241,7 +243,7 @@ class ProfessionsTableRow extends React.Component {
 class ProfessionTable extends React.Component{
   constructor(){
     super();
-    axios.get('http://localhost:58511/api/Doctor')
+    axios.get(base_api_url+'/api/Doctor')
     .then(res => {
 
       res.data.forEach(doctor => {
