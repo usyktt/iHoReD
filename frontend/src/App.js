@@ -212,7 +212,8 @@ function Footerbar(props){
 class ProfessionsTable extends React.Component{
   constructor(){
     super();
-    axios.get('http://localhost:58511/ProfessionsStatic')
+    //axios.get('http://localhost:58511/ProfessionsStatic')
+    axios.get('http://hored-backend.azurewebsites.net/ProfessionsStatic')
     .then(res => {
 
       res.data.forEach(doctor => {
@@ -241,7 +242,8 @@ class ProfessionsTableRow extends React.Component {
 class ProfessionTable extends React.Component{
   constructor(){
     super();
-    axios.get('http://localhost:58511/api/Doctor')
+    //axios.get('http://localhost:58511/api/Doctor')
+    axios.get('http://hored-backend.azurewebsites.net/api/Doctor')
     .then(res => {
 
       res.data.forEach(doctor => {
