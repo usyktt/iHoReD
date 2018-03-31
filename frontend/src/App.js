@@ -218,6 +218,7 @@ function Footerbar(props){
 class ProfessionsTable extends React.Component{
   constructor(){
     super();
+    //axios.get('http://localhost:58511/ProfessionsStatic')
     axios.get(server_url+'/ProfessionsStatic')
     .then(res => {
 
@@ -247,6 +248,7 @@ class ProfessionsTableRow extends React.Component {
 class ProfessionTable extends React.Component{
   constructor(){
     super();
+    //axios.get('http://localhost:58511/api/Doctor')
     axios.get(server_url+'/api/Doctor')
     .then(res => {
 
