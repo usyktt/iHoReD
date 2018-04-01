@@ -52,7 +52,6 @@ namespace Entities.Services
             for (int i = 0; i < values.Length; i ++)
             {
                 list.Add(values.GetValue(i).ToString());
-
             }
             _dbContext.Dispose();
             return list;
