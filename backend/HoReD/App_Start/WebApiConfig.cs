@@ -10,7 +10,7 @@ namespace HoReD
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-           string MyConString= Environment.GetEnvironmentVariable("MS_TableConnectionString");
+          
             // Web API routes
             config.MapHttpAttributeRoutes();
 
