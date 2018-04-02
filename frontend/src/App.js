@@ -30,24 +30,62 @@ class App extends Component {
 }
 
 
-
-function Logbar(props) 
+class Logbar extends React.Component
 {
-  /*render:function validate() {
-    var $result = $("#invalidEmail");
-    var email = $("#inputEmailtext").val();
-    $result.text("");
   
-    if ( validator.isEmail(email)) {
-      $result.text(email + " is valid :)");
-      $result.css("color", "green");
+  constructor(props){
+    super(props);
+    this.validate=this.validate.bind(this);
+    this.val=''
+  }
+
+  state = {
+    firstName: '',lastName:'',email:'',password:''
+  }
+
+  handleChange = event => {
+    this.setState({ firstName: event.target.value,lastName: event.target.value,email: event.target.value,password: event.target.value });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const user = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:58511/api/Registration',
+      data: user,
+      config: { headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}
+  })
+      .then(function (response) {
+          //handle success
+          console.log(response);
+      })
+      .catch(function (response) {
+          //handle error
+          console.log(response);
+      });
+              }
+
+   validate() {
+    if ( validator.isEmail(this.val)) {
+      alert(this.val + " is valid :)")
     } else {
-      $result.text(email + " is not valid :(");
-      $result.css("color", "red");
+      alert(this.val + " is not valid :)")
     }
+    /*this.handleChange();*/
     return false;
-  }*/
-  return <div>
+  }
+  render() {
+  return (<div>
   			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
  			<p className='text-white mr-1'> </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'></p>
    			<div className = "container-fluid justify-content-center align-items-center navbar-collapse collapse ">
@@ -68,32 +106,32 @@ function Logbar(props)
           <h4 className="modal-title">Please, fill in the fields to register:</h4>
           <button type="button" className="close" data-dismiss="modal">&times;</button>
         </div>
-        <form className="was-validated ml-3 mr-3" noValidate>
+        <form className="was-validated ml-3 mr-3" onSubmit={this.handleSubmit} noValidate>
   <div className="form-row mb-3">
   <div className="form-group col-sm-6 col-xs-12" id="inputFName">
-      <input type="text" className="form-control" placeholder="First Name" required/>
+      <input type="text" className="form-control" onChange={this.handleChange} name="firstName" placeholder="First Name" required/>
       <div className="invalid-feedback" id="invalidFname">
-        Plese,enter your first name!
+        Please,enter your first name!
       </div>
     </div>
     <div className="form-group col-sm-6 col-xs-12" id="inputLName">
-      <input type="text" className="form-control" placeholder="Last Name" required/>
+      <input type="text" className="form-control" placeholder="Last Name" onChange={this.handleChange} name="larstName" required/>
       <div className="invalid-feedback" id="invalidLname">
-        Plese,enter your last name!
+        Please,enter your last name!
       </div>
     </div>
     </div>
     <div className="form-row mb-3">
     <div className="form-group col-sm-6 col-xs-12" id="inputEmail">
-      <input type="email" className="form-control" id="inputEmailtext" placeholder="Email" required/>
+      <input type="email" className="form-control" onChange={(e)=> this.val=e.target.value} id="inputEmailtext" placeholder="Email" name="email" required/>
       <div  className="invalid-feedback" id="invalidEmail">
-        Plese,enter valid email!
+        Please,enter valid email!
       </div>
     </div>
     <div className="form-group col-sm-6 col-xs-12" id="inputPassword">
-      <input type="password" className="form-control" placeholder="Password" required/>
+      <input type="password" className="form-control" placeholder="Password" onChange={this.handleChange} name="password" required/>
       <div className="invalid-feedback" id="invalidPassword">
-        Plese,enter your password!
+        Please,enter your password!
       </div>
     </div>
     </div>
@@ -108,7 +146,7 @@ function Logbar(props)
   <div className="modal-footer form-group">
   <div className="row">
   <div className="col-12 col-sm-6 col-md-6">
-        <button type="submit" className="btn btn-info btn-lg">Sign up
+        <button type="submit" onClick={this.validate} className="btn btn-info btn-lg">Sign up
           </button>
     </div>
     <div className="col-12 col-sm-6 col-md-6">   
@@ -122,12 +160,13 @@ function Logbar(props)
       </div>
     </div>
   </div> 
-</div>
-
+</div>);
+  }
 }
 
-function Datepicker(props){
-  return <div className="col sm-2 md-9 lg-9 xl-9">
+class Datepicker extends React.Component {
+  render() {
+  return (<div className="col sm-2 md-9 lg-9 xl-9">
   <div className="container table-responsive">
       <table className="table table-bordered table-hover table-light">
         <thead>
@@ -212,13 +251,16 @@ function Datepicker(props){
         </tbody>
       </table>
     </div>
-  </div>
+  </div>)
+  }
 }
 
-function Footerbar(props){
-  return <div>
+class Footerbar extends React.Component{
+  render() {
+  return (<div>
     <p className='font-italic bg-secondary text-white text-center'></p>
-  </div>
+  </div>)
+  }
 }
 
 class ProfessionsTable extends React.Component{

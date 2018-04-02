@@ -67,3 +67,10 @@
 #inputPassword:hover #invalidPassword {
   visibility:visible;
 }
+
+.form-control {
+  border-color: aqua;
+}
+.form-control:focus, input:focus{
+  outline: none;
+}
