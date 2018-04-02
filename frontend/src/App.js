@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 //import Logbar from './Logbar.js';
 import axios from 'axios';
+import $ from 'jquery'; 
+import validator from 'validator';
 class App extends Component {
   render() {
     return (
@@ -19,7 +21,24 @@ class App extends Component {
   }
 }
 
-function Logbar(props){
+
+
+function Logbar(props) 
+{
+  /*render:function validate() {
+    var $result = $("#invalidEmail");
+    var email = $("#inputEmailtext").val();
+    $result.text("");
+  
+    if ( validator.isEmail(email)) {
+      $result.text(email + " is valid :)");
+      $result.css("color", "green");
+    } else {
+      $result.text(email + " is not valid :(");
+      $result.css("color", "red");
+    }
+    return false;
+  }*/
   return <div>
   			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
  			<p className='text-white mr-1'> </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'></p>
@@ -41,31 +60,31 @@ function Logbar(props){
           <h4 className="modal-title">Please, fill in the fields to register:</h4>
           <button type="button" className="close" data-dismiss="modal">&times;</button>
         </div>
-        <form className="was-validated" noValidate>
+        <form className="was-validated ml-3 mr-3" noValidate>
   <div className="form-row mb-3">
-  <div className="form-group col-sm-6 col-xs-12">
-      <input type="text" className="form-control" id="inputFName" placeholder="First Name" required/>
-      <div className="invalid-tooltip">
+  <div className="form-group col-sm-6 col-xs-12" id="inputFName">
+      <input type="text" className="form-control" placeholder="First Name" required/>
+      <div className="invalid-feedback" id="invalidFname">
         Plese,enter your first name!
       </div>
     </div>
-    <div className="form-group col-sm-6 col-xs-12">
-      <input type="text" className="form-control" id="inputLName" placeholder="Last Name" required/>
-      <div className="invalid-tooltip">
+    <div className="form-group col-sm-6 col-xs-12" id="inputLName">
+      <input type="text" className="form-control" placeholder="Last Name" required/>
+      <div className="invalid-feedback" id="invalidLname">
         Plese,enter your last name!
       </div>
     </div>
     </div>
     <div className="form-row mb-3">
-    <div className="form-group col-sm-6 col-xs-12">
-      <input type="email" className="form-control" id="inputEmail4" placeholder="Email" required/>
-      <div className="invalid-tooltip">
+    <div className="form-group col-sm-6 col-xs-12" id="inputEmail">
+      <input type="email" className="form-control" id="inputEmailtext" placeholder="Email" required/>
+      <div  className="invalid-feedback" id="invalidEmail">
         Plese,enter valid email!
       </div>
     </div>
-    <div className="form-group col-sm-6 col-xs-12">
-      <input type="password" className="form-control" id="inputPassword4" placeholder="Password" required/>
-      <div className="invalid-tooltip">
+    <div className="form-group col-sm-6 col-xs-12" id="inputPassword">
+      <input type="password" className="form-control" placeholder="Password" required/>
+      <div className="invalid-feedback" id="invalidPassword">
         Plese,enter your password!
       </div>
     </div>
@@ -91,10 +110,12 @@ function Logbar(props){
     </div>
   </div>
 </form>
+
       </div>
     </div>
   </div> 
 </div>
+
 }
 
 function Datepicker(props){
@@ -103,97 +124,79 @@ function Datepicker(props){
       <table className="table table-bordered table-hover table-light">
         <thead>
         <tr>
-            <th colSpan="8" className="bg-info text-white">Поточний розклад:</th>
+            <th colSpan="8" className="bg-info text-white">Schedule:</th>
           </tr>
           <tr>
             <th>-/-</th>
-            <th>Sunday</th>
             <th>Monday</th>
-            <th>Tuesday</th>
+            <th className = "table-primary">Tuesday</th>
             <th>Wednesday</th>
-            <th className = "table-primary">Thursday</th>
+            <th>Thursday</th>
             <th>Friday</th>
-            <th>Saturday</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>09:00-09:30</th>
             <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
             <td className = "table-primary">-</td>
+            <td>-</td>
             <td>-</td>
             <td>-</td>
           </tr>
           <tr>
                   <th>09:30-10:00</th>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td className = "table-primary">-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
           <tr>
                   <th>10:00-10:30</th>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td className = "table-primary">-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
           <tr>
                   <th>10:30-11:00</th>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td className = "table-primary">-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
           <tr>
                   <th>11:00-11:30</th>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td className = "table-primary">-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
           <tr>
                   <th>11:30-12:00</th>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td className = "table-primary">-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
           <tr>
                   <th>12:00-12:30</th>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td className = "table-primary">-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
           <tr>
                   <th>12:30-13:00</th>
                   <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
                   <td className = "table-primary">-</td>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
           </tr>
@@ -205,7 +208,7 @@ function Datepicker(props){
 
 function Footerbar(props){
   return <div>
-    <p className='font-italic bg-secondary text-white text-center'>Ніхто ще не скаржився на наш сервіс!</p>
+    <p className='font-italic bg-secondary text-white text-center'></p>
   </div>
 }
 
@@ -225,7 +228,7 @@ class ProfessionsTable extends React.Component{
   render(){
     return <div className = "container col sm-1 md-1 lg-1 xl-1">
      <div className="list-group" id="professions">
-     <a href="#" className="list-group-item active bg-info">Наявні лікарі:</a>
+     <a href="#" className="list-group-item active bg-info">Availible doctors:</a>
      </div>
   </div>
 }
@@ -254,7 +257,7 @@ class ProfessionTable extends React.Component{
   render(){
   return  <div className="container col sm-1 md-1 lg-1 xl-1">
                 <div className="list-group" id = "doctors">
-                <a href="#" className="list-group-item active bg-info ">Оберіть лікаря:</a>
+                <a href="#" className="list-group-item active bg-info ">Choose the doctor:</a>
                 </div>
           </div>
 }
