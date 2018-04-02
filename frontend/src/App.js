@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-//import logo from './logo.svg';
+import React from 'react';
+import { Component } from 'react';
+
 import './App.css';
-//import Logbar from './Logbar.js';
 import axios from 'axios';
 import $ from 'jquery'; 
 import validator from 'validator';
@@ -36,35 +36,30 @@ class Logbar extends React.Component
   constructor(props){
     super(props);
     this.validate=this.validate.bind(this);
-    this.val=''
+    this.val='';
+    this.firstName='';
+    this.lastName='';
+    this.email='';
+    this.password='';
   }
 
-  state = {
-    firstName: '',lastName:'',email:'',password:''
-  }
 
   handleChange = event => {
-    this.setState({ firstName: event.target.value,lastName: event.target.value,email: event.target.value,password: event.target.value });
+    this.setState({ firstName: event.target.value,lastName: event.target.value,email: this.value,password: event.target.value });
   }
 
-  handleSubmit = event => {
+  handleSubmit = event => 
+  {
     event.preventDefault();
-
-    const user = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password
+    //const
+    var user = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      password: this.password
     };
 
-    axios({
-      method: 'post',
-      url: 'http://localhost:58511/api/Registration',
-      data: user,
-      config: { headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }}
-  })
+    axios.post(server_url + '/api/Registration',user)
       .then(function (response) {
           //handle success
           console.log(response);
@@ -76,7 +71,7 @@ class Logbar extends React.Component
               }
 
    validate() {
-    if ( validator.isEmail(this.val)) {
+    if ( validator.isEmail(this.email)) {
       alert(this.val + " is valid :)")
     } else {
       alert(this.val + " is not valid :)")
@@ -90,8 +85,8 @@ class Logbar extends React.Component
  			<p className='text-white mr-1'> </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'></p>
    			<div className = "container-fluid justify-content-center align-items-center navbar-collapse collapse ">
                 <form className="form-inline" action="/action_page.php">
-                    <input className="form-control mr-3" type="text" placeholder="Login"/> 
-                    <input className="form-control mr-3" type="text" placeholder="Password"/> 
+                    <input className="form-control mr-3"  type="text" placeholder="Login"/> 
+                    <input className="form-control mr-3"  type="text" placeholder="Password"/> 
                     <div>
                     <button className="btn btn-info mr-2" type="submit">Sign in</button>
                     <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign up</button> 
@@ -106,16 +101,17 @@ class Logbar extends React.Component
           <h4 className="modal-title">Please, fill in the fields to register:</h4>
           <button type="button" className="close" data-dismiss="modal">&times;</button>
         </div>
-        <form className="was-validated ml-3 mr-3" onSubmit={this.handleSubmit} noValidate>
+         <form className="was-validated ml-3 mr-3" onSubmit={this.handleSubmit} noValidate /*method="post" action="api/Registration" 
+    encType="application/x-www-form-urlencoded"*/>
   <div className="form-row mb-3">
   <div className="form-group col-sm-6 col-xs-12" id="inputFName">
-      <input type="text" className="form-control" onChange={this.handleChange} name="firstName" placeholder="First Name" required/>
+      <input type="text" className="form-control" onChange={(x => {this.firstName=x.target.value;})} name="FIRSTNAME" placeholder="First Name" required/>
       <div className="invalid-feedback" id="invalidFname">
         Please,enter your first name!
       </div>
     </div>
     <div className="form-group col-sm-6 col-xs-12" id="inputLName">
-      <input type="text" className="form-control" placeholder="Last Name" onChange={this.handleChange} name="larstName" required/>
+      <input type="text" className="form-control" onChange={(x => {this.lastName=x.target.value;})} placeholder="Last Name" name="LASTNAME" required/>
       <div className="invalid-feedback" id="invalidLname">
         Please,enter your last name!
       </div>
@@ -123,13 +119,13 @@ class Logbar extends React.Component
     </div>
     <div className="form-row mb-3">
     <div className="form-group col-sm-6 col-xs-12" id="inputEmail">
-      <input type="email" className="form-control" onChange={(e)=> this.val=e.target.value} id="inputEmailtext" placeholder="Email" name="email" required/>
+      <input type="email"  className="form-control" onChange={(e)=> this.email=e.target.value} id="inputEmailtext" placeholder="Email" name="email" required/>
       <div  className="invalid-feedback" id="invalidEmail">
         Please,enter valid email!
       </div>
     </div>
     <div className="form-group col-sm-6 col-xs-12" id="inputPassword">
-      <input type="password" className="form-control" placeholder="Password" onChange={this.handleChange} name="password" required/>
+      <input type="password"  className="form-control" placeholder="Password" onChange={(x => {this.password=x.target.value;})} name="password" required/>
       <div className="invalid-feedback" id="invalidPassword">
         Please,enter your password!
       </div>
@@ -157,9 +153,10 @@ class Logbar extends React.Component
   </div>
 </form>
 
+      
       </div>
-    </div>
-  </div> 
+    </div> 
+  </div>
 </div>);
   }
 }
