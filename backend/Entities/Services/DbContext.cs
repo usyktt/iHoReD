@@ -13,7 +13,14 @@ namespace Entities.Services
 
         public DbContext()
         {
+            try
+            {
                 _myConnection.Open();
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException();
+            }
         }
 
         //Execute query, which return one string, where values separated by char
@@ -65,7 +72,10 @@ namespace Entities.Services
 
                     try
                     {
-                        sqlCommand.ExecuteNonQuery();
+                        if (sqlCommand.ExecuteNonQuery() != 1)
+                        {
+                            throw new UnauthorizedAccessException();
+                        }
                     }
                     catch (Exception e)
                     {

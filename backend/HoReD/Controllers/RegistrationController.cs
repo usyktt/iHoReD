@@ -15,11 +15,20 @@ namespace HoReD.Controllers
 
         //Adds to system inforation about new user
         [HttpPost]
+        [AllowAnonymous]
         public IHttpActionResult CreateNewUser(RegistrationBindingModel model)
         {
-            IUserService user = new UserService(_dbContext);
-            user.StoringInfoAboutNewUser(model.FirstName, model.LastName, model.Email, model.Password);
-            return Ok();
+            try
+            {
+                IUserService user = new UserService(_dbContext);
+                user.StoringInfoAboutNewUser(model.FirstName, model.LastName, model.Email, model.Password);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return Unauthorized();
+            }
+            
         }
     }
 }
