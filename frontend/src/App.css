@@ -44,3 +44,26 @@
   background-color:#cce6ff;
 }
 
+.invalid-tooltip {
+  visibility: hidden;
+}
+
+.invalid-feedback {
+  visibility: hidden;
+}
+
+#inputFName:hover #invalidFname {
+  visibility:visible;
+}
+
+#inputLName:hover #invalidLname {
+  visibility:visible;
+}
+
+#inputEmail:hover #invalidEmail {
+  visibility:visible;
+}
+
+#inputPassword:hover #invalidPassword {
+  visibility:visible;
+}
