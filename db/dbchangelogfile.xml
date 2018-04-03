@@ -6,12 +6,12 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.3.xsd">
   
-  <changeSet author="Oleg Rakus" id="V1">
+  <changeSet author="Oleg Rakus" id="V1.0">
     <sqlFile path="HoReD.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
   
-  <changeSet author="Mariia shkolyk" id="V1.1">
-    <sqlFile path="TestCommand.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  <changeSet author="Oleg Rakus" id="V1.1">
+    <sqlFile path="Edited procedure REGISTER_USER.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
 
 </databaseChangeLog>
