@@ -14,7 +14,7 @@ namespace HoReD
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            System.Configuration.ConfigurationSettings.AppSettings["FrontURL"] = Environment.GetEnvironmentVariable("FrontURL");
+            System.Configuration.ConfigurationSettings.AppSettings["FrontURL"] = Environment.GetEnvironmentVariable("APPSETTING_FrontURL");
             
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
