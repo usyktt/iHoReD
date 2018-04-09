@@ -16,11 +16,11 @@ namespace HoReD
 
            // System.Configuration.ConfigurationSettings.AppSettings["FrontURL"] = Environment.GetEnvironmentVariable("APPSETTING_FrontURL");
             
-            #if (DEBUG)
+           /* #if (DEBUG)
                 System.Configuration.ConfigurationSettings.AppSettings["FrontURL"] = "http://localhost:3000";
             #else
                 System.Configuration.ConfigurationSettings.AppSettings["FrontURL"] = "https://hored-frontend.azurewebsites.net";
-            #endif
+            #endif */
                 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
