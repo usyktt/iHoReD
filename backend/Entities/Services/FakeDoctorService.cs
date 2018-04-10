@@ -37,12 +37,20 @@ namespace Entities.Services
 
         public List<string> GetProfessions(bool isStatic)
         {
-            return new List<string>();
+            var list = new List<string>();
+            list.Add("therapist");
+            list.Add("dentist");
+            list.Add("ophtalmologist");
+            return list;
         }
 
         public List<string[]> GetDoctorsByProfession(string profession)
         {
             var list = new List<string[]>();
+            var prof1 = new[] { "Halenok", "Iryna" };
+            var prof2 = new string[] { "Solyar", "Olya" };
+            list.Add(prof1);
+            list.Add(prof2);
             return list;
         }
     }

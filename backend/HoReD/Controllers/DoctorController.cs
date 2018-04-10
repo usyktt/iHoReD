@@ -11,12 +11,8 @@ namespace HoReD.Controllers
     /// </summary>
     public class DoctorController : ApiController
     {
-         private readonly IDoctorService _doctorService;
-        /// <summary>
-        /// Gets full infiormation about Doctors in database
-        /// </summary>
-        /// <returns>List of instances of the class DoctorInfo</returns>
-        /// <example>http://localhost:*****/api/Doctor/</example>
+        private readonly IDoctorService _doctorService;
+
         public DoctorController()
         {
             _doctorService = new DoctorService(new DbContext());
@@ -25,11 +21,15 @@ namespace HoReD.Controllers
         {
             _doctorService = doctorService;
         }
+
+        /// <summary>
+        /// Gets full infiormation about Doctors in database
+        /// </summary>
+        /// <returns>List of instances of the class DoctorInfo</returns>
+        /// <example>http://localhost:*****/api/Doctor/</example>
         [HttpGet]
         public List<DoctorInfo> GetDoctors()
         {
-            /*var dbContext = new DbContext();
-            var doctorService = new DoctorService(dbContext);*/
             return _doctorService.GetDoctors();
         }
 
@@ -37,8 +37,6 @@ namespace HoReD.Controllers
         [Route("GetDoctors/{profession}")]
         public List<string[]> GetDoctorsByProfession(string profession)
         {
-            /*var dbContext = new DbContext();
-            var doctorService = new DoctorService(dbContext);*/
             return _doctorService.GetDoctorsByProfession(profession);
         }
 
