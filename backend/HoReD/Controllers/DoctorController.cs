@@ -46,9 +46,7 @@ namespace HoReD.Controllers
         [Route("ProfessionsNotStatic/{isStatic=false}")]
         public List<string> GetProfessions(bool isStatic)
         {
-            var dbContext = new DbContext();
-            var doctorService = new DoctorService(dbContext);
-            return doctorService.GetProfessions(isStatic);
+            return _doctorService.GetProfessions(isStatic);
         }
 
     }
