@@ -13,7 +13,14 @@ namespace Entities.Services
 
         public DbContext()
         {
+            try
+            {
                 _myConnection.Open();
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException();
+            }
         }
 
         //Execute query, which return one string, where values separated by char
@@ -41,7 +48,6 @@ namespace Entities.Services
 
                 }
             }
-            
             result.Remove(result.Length - 1, 1);
             return result.ToString();
         }
@@ -57,18 +63,22 @@ namespace Entities.Services
             {
                 using (var sqlCommand = new SqlCommand(cmd, _myConnection))
                 {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
                     foreach (var userInfo in usersInfo)
                     {
-                        sqlCommand.AddParameter(userInfo.Key,userInfo.Value);
+                        sqlCommand.AddParameter(userInfo.Key, userInfo.Value);
                     }
 
                     try
                     {
-                        sqlCommand.ExecuteNonQuery();
+                        if (sqlCommand.ExecuteNonQuery() != 1)
+                        {
+                            throw new UnauthorizedAccessException();
+                        }
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                        throw new Exception(e.Message);
                     }
                 }
             }
