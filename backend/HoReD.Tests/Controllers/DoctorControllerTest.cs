@@ -10,13 +10,89 @@ using Moq;
 namespace HoReDTests.Controllers
 {
     /// <summary>
-    /// Summary description for DoctorController
+    /// Summary description for DoctorControllerTest
+
     /// </summary>
     [TestFixture]
     public class DoctorControllerTest
     {
-        
-        public List<DoctorInfo> GetDoctors()
+        Mock<IDoctorService> mock;
+
+        [SetUp]
+        public void SetUp()
+        {
+            mock = new Mock<IDoctorService>();            
+        }
+
+        [Test]
+        public void GetDoctors_ValidCountOfRecords()
+        {
+            // Arrange
+            var fake_list = GetFakeDoctors();
+            mock.Setup(repo => repo.GetDoctors()).Returns(fake_list);
+            var controller = new DoctorController(mock.Object);
+
+            // Act
+            var response = controller.GetDoctors().Count;
+
+            // Assert
+            Assert.AreEqual(response, fake_list.Count);
+        }
+
+        [Test]
+        public void GetDoctors_ReturnedValuesValid()
+        {
+            // Arrange
+            var fake_list = GetFakeDoctors();
+            mock.Setup(repo => repo.GetDoctors()).Returns(fake_list);
+            var controller = new DoctorController(mock.Object);
+
+            // Act
+            var result = controller.GetDoctors();
+
+            // Assert
+            Assert.AreEqual(result[0].FirstName, fake_list[0].FirstName);
+            Assert.AreEqual(result[0].LastName, fake_list[0].LastName);
+            Assert.AreEqual(result[0].Image, fake_list[0].Image);
+            Assert.AreEqual(result[0].ProfessionName, fake_list[0].ProfessionName);
+        }
+
+        [Test]
+        [TestCase ("something")]
+        public void GetDoctorsByProffesion_AllValidParameters(string profession)
+        {
+            // Arrange
+            var fake_list = GetFakeDoctorsByProfession(profession);
+            mock.Setup(repo => repo.GetDoctorsByProfession(profession)).Returns(fake_list);
+            var controller = new DoctorController(mock.Object);
+
+            // Act
+            var result = controller.GetDoctorsByProfession(profession);
+
+            // Assert
+            Assert.AreEqual(result[0][0].ToString(), fake_list[0][0]);
+            Assert.AreEqual(result[0][1].ToString(), fake_list[0][1]);
+            Assert.AreEqual(result[1][0].ToString(), fake_list[1][0]);
+            Assert.AreEqual(result[1][1].ToString(), fake_list[1][1]);
+        }
+
+        [Test]
+        public void GetDoctorsByProfession_ValidCountOfRecords()
+        {
+            // Arrange
+            string prof = "something";
+            var fake_list = GetFakeDoctorsByProfession(prof);
+            mock.Setup(repo => repo.GetDoctorsByProfession(prof)).Returns(fake_list);
+            var controller = new DoctorController(mock.Object);
+
+            // Act
+            var response = controller.GetDoctorsByProfession(prof).Count;
+
+            // Assert
+            Assert.AreEqual(response, fake_list.Count);
+        }
+
+        public List<DoctorInfo> GetFakeDoctors()
         {
             var list = new List<DoctorInfo>();
             var doctor1 = new DoctorInfo
@@ -46,71 +122,23 @@ namespace HoReDTests.Controllers
             return list;
         }
 
-        [Test]
-        public void GetDoctors_Count()
+        public List<string> GetFakeProfessions(bool isStatic)
         {
-            // Arrange
-            /*var testData = new FakeDoctorService();
-            var controller = new DoctorController(testData); */
-
-            var mock = new Mock<IDoctorService>();
-            mock.Setup(repo => repo.GetDoctors()).Returns(GetDoctors());
-
-            var controller = new DoctorController(mock.Object);
-            // Act
-            var response = controller.GetDoctors();
-
-            // Assert
-            Assert.IsNotNull(response);
-            Assert.AreEqual(response.Count, 2);
+            var list = new List<string>();
+            list.Add("therapist");
+            list.Add("dentist");
+            list.Add("ophtalmologist");
+            return list;
         }
 
-        [Test]
-        public void GetDoctors_ValidValues()
+        public List<string[]> GetFakeDoctorsByProfession(string profession)
         {
-            // Arrange
-            var testData = new FakeDoctorService();
-            var controller = new DoctorController(testData);
-
-            // Act
-            var response = controller.GetDoctors();
-
-            // Assert
-            Assert.AreEqual(response[0].FirstName, "name1");
-            Assert.AreEqual(response[0].LastName, "name2");
-            Assert.AreEqual(response[0].ProfessionName, "therapist");
-        }
-
-        [Test]
-        public void GetDoctorsByProffesion_ValidValues()
-        {
-            // Arrange
-            var testData = new FakeDoctorService();
-            var controller = new DoctorController(testData);
-            string prof = "therapist";
-
-            // Act
-            var response = controller.GetDoctorsByProfession(prof);
-
-            // Assert
-            Assert.AreEqual(response[0][0].ToString(), "Halenok");
-            Assert.AreEqual(response[0][1].ToString(), "Iryna");
-            Assert.AreEqual(response[1][0].ToString(), "Solyar");
-            Assert.AreEqual(response[1][1].ToString(), "Olya");
-        }
-        [Test]
-        public void GetDoctorsByProffesion_Count()
-        {
-            // Arrange
-            var testData = new FakeDoctorService();
-            var controller = new DoctorController(testData);
-            string prof = "therapist";
-
-            // Act
-            var response = controller.GetDoctorsByProfession(prof);
-
-            // Assert
-            Assert.AreEqual(response.Count, 2);
+            var list = new List<string[]>();
+            var prof1 = new[] { "Halenok", "Iryna" };
+            var prof2 = new string[] { "Solyar", "Olya" };
+            list.Add(prof1);
+            list.Add(prof2);
+            return list;
         }
     }
 }
