@@ -40,5 +40,16 @@ namespace HoReD.Controllers
             return _doctorService.GetDoctorsByProfession(profession);
         }
 
+        [HttpGet]
+        [ActionName("GetProfessions")]
+        [Route("ProfessionsStatic/{isStatic=true}")]
+        [Route("ProfessionsNotStatic/{isStatic=false}")]
+        public List<string> GetProfessions(bool isStatic)
+        {
+            var dbContext = new DbContext();
+            var doctorService = new DoctorService(dbContext);
+            return doctorService.GetProfessions(isStatic);
+        }
+
     }
 }
