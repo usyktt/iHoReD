@@ -11,6 +11,7 @@ namespace HoReDTests.Controllers
 {
     /// <summary>
     /// Summary description for DoctorControllerTest
+
     /// </summary>
     [TestFixture]
     public class DoctorControllerTest
