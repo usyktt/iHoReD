@@ -3,7 +3,6 @@ import { Component } from 'react';
 
 import './App.css';
 import axios from 'axios';
-import $ from 'jquery'; 
 import validator from 'validator';
 
 const base_api_url = process.env.REACT_APP_BASE_API_URL;
@@ -36,18 +35,17 @@ class Logbar extends React.Component
   constructor(props){
     super(props);
     this.validate=this.validate.bind(this);
-    this.val='';
     this.firstName='';
     this.lastName='';
     this.email='';
     this.password='';
+    this.divFName = React.createRef();
+    this.divLName = React.createRef();
+    this.divEmail = React.createRef();
+    this.divPass = React.createRef();
+    this.btnSubmit= React.createRef();
   }
-
-
-  handleChange = event => {
-    this.setState({ firstName: event.target.value,lastName: event.target.value,email: this.value,password: event.target.value });
-  }
-
+  
   handleSubmit = event => 
   {
     event.preventDefault();
@@ -71,12 +69,47 @@ class Logbar extends React.Component
               }
 
    validate() {
-    if ( validator.isEmail(this.email)) {
-      alert(this.val + " is valid :)")
+    var tempFName=false;
+    var tempLName=false;
+    var tempEmail=false;
+    var tempPass=false;
+    if ( validator.isAlpha(this.firstName,'en-GB')) {
+      tempFName=true;
+      this.divFName.current.textContent="";
     } else {
-      alert(this.val + " is not valid :)")
+      tempFName=false;
+      this.divFName.current.textContent="Your first name is not valid!";
     }
-    /*this.handleChange();*/
+    if ( validator.isAlpha(this.lastName,'en-GB')) {
+      var tempLName=true;
+      this.divLName.current.textContent="";
+    } else {
+      var tempLName=false;
+      this.divLName.current.textContent="Your last name is not valid!";
+    }
+    if ( validator.isEmail(this.email)) {
+      var tempEmail=true;
+      this.divEmail.current.textContent="";
+    } else {
+      var tempEmail=false;
+      this.divEmail.current.textContent="Your email is not valid!";
+    }
+    if ( validator.isEmpty(this.password)==false) {
+      var tempPass=true;
+      this.divPass.current.textContent="";
+    } else {
+      var tempPass=false;
+      this.divPass.current.textContent="Your have not enter the password!";
+    }
+
+    if(tempLName && tempLName && tempEmail && tempPass)
+    {
+      this.btnSubmit.current.disabled=false;
+    }
+    else
+    {
+      this.btnSubmit.current.disabled=true; 
+    }
     return false;
   }
   render() {
@@ -101,33 +134,29 @@ class Logbar extends React.Component
           <h4 className="modal-title">Please, fill in the fields to register:</h4>
           <button type="button" className="close" data-dismiss="modal">&times;</button>
         </div>
-         <form className="was-validated ml-3 mr-3" onSubmit={this.handleSubmit} noValidate /*method="post" action="api/Registration" 
+         <form className="ml-3 mr-3" onSubmit={this.handleSubmit} noValidate /*method="post" action="api/Registration" 
     encType="application/x-www-form-urlencoded"*/>
   <div className="form-row mb-3">
   <div className="form-group col-sm-6 col-xs-12" id="inputFName">
-      <input type="text" className="form-control" onChange={(x => {this.firstName=x.target.value;})} name="FIRSTNAME" placeholder="First Name" required/>
-      <div className="invalid-feedback" id="invalidFname">
-        Please,enter your first name!
+      <input type="text" className="form-control" onChange={(x => {this.firstName=x.target.value; this.validate()})} name="FIRSTNAME" placeholder="First Name" required/>
+      <div id="invalidFname" ref={this.divFName}>
       </div>
     </div>
     <div className="form-group col-sm-6 col-xs-12" id="inputLName">
-      <input type="text" className="form-control" onChange={(x => {this.lastName=x.target.value;})} placeholder="Last Name" name="LASTNAME" required/>
-      <div className="invalid-feedback" id="invalidLname">
-        Please,enter your last name!
+      <input type="text" className="form-control" onChange={(x => {this.lastName=x.target.value; this.validate()})} placeholder="Last Name" name="LASTNAME" required/>
+      <div id="invalidLname" ref={this.divLName}>
       </div>
     </div>
     </div>
     <div className="form-row mb-3">
     <div className="form-group col-sm-6 col-xs-12" id="inputEmail">
-      <input type="email"  className="form-control" onChange={(e)=> this.email=e.target.value} id="inputEmailtext" placeholder="Email" name="email" required/>
-      <div  className="invalid-feedback" id="invalidEmail">
-        Please,enter valid email!
+      <input type="email"  className="form-control" onChange={(e)=> {this.email=e.target.value; this.validate()}} id="inputEmailtext" placeholder="Email" name="email" required/>
+      <div id="invalidEmail" ref={this.divEmail}>
       </div>
     </div>
     <div className="form-group col-sm-6 col-xs-12" id="inputPassword">
-      <input type="password"  className="form-control" placeholder="Password" onChange={(x => {this.password=x.target.value;})} name="password" required/>
-      <div className="invalid-feedback" id="invalidPassword">
-        Please,enter your password!
+      <input type="password"  className="form-control" placeholder="Password" onChange={(x => {this.password=x.target.value; ; this.validate()})} name="password" required/>
+      <div id="invalidPassword" ref={this.divPass}>
       </div>
     </div>
     </div>
@@ -142,7 +171,7 @@ class Logbar extends React.Component
   <div className="modal-footer form-group">
   <div className="row">
   <div className="col-12 col-sm-6 col-md-6">
-        <button type="submit" onClick={this.validate} className="btn btn-info btn-lg">Sign up
+        <button type="submit" ref={this.btnSubmit} disabled className="btn btn-info btn-lg">Sign up
           </button>
     </div>
     <div className="col-12 col-sm-6 col-md-6">   
