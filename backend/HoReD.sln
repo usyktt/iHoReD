@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoReD", "HoReD\HoReD.csproj", "{36726DAD-BB71-4E6E-BB28-256632EC155F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoReD.Tests", "HoReD.Tests\HoReD.Tests.csproj", "{3F271B71-ADF1-402C-9CDF-CE5D7BD4B5AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoReDTests", "HoReD.Tests\HoReDTests.csproj", "{3F271B71-ADF1-402C-9CDF-CE5D7BD4B5AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{811EDA95-6B82-4EAA-962E-418FB04E82C4}"
 EndProject
