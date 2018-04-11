@@ -58,7 +58,7 @@ namespace HoReDTests.Controllers
 
         [Test]
         [TestCase ("something")]
-        public void GetDoctorsByProffesion_AllValidParameters(string profession)
+        public void GetDoctorsByProffesion_ReturnedValuesValid(string profession)
         {
             // Arrange
             var fake_list = GetFakeDoctorsByProfession(profession);
@@ -86,6 +86,42 @@ namespace HoReDTests.Controllers
 
             // Act
             var response = controller.GetDoctorsByProfession(prof).Count;
+
+            // Assert
+            Assert.AreEqual(response, fake_list.Count);
+        }
+
+        [Test]
+        public void GetProffesions_ReturnedValuesValid()
+        {
+
+            // Arrange
+            bool stat = false;
+            var fake_list = GetFakeProfessions(stat);
+            mock.Setup(repo => repo.GetProfessions(stat)).Returns(fake_list);
+            var controller = new DoctorController(mock.Object);
+
+            // Act
+            var result = controller.GetProfessions(stat);
+
+
+            // Assert
+            Assert.AreEqual(result[0].ToString(), fake_list[0]);
+            Assert.AreEqual(result[1].ToString(), fake_list[1]);
+            Assert.AreEqual(result[2].ToString(), fake_list[2]);
+        }
+
+        [Test]
+        public void GetProfessions_ValidCountOfRecords()
+        {
+            // Arrange
+            bool stat = false;
+            var fake_list = GetFakeProfessions(stat);
+            mock.Setup(repo => repo.GetProfessions(stat)).Returns(fake_list);
+            var controller = new DoctorController(mock.Object);
+
+            // Act
+            var response = controller.GetProfessions(stat).Count;
 
             // Assert
             Assert.AreEqual(response, fake_list.Count);
