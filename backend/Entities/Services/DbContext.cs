@@ -48,7 +48,6 @@ namespace Entities.Services
 
                 }
             }
-
             result.Remove(result.Length - 1, 1);
             return result.ToString();
         }
