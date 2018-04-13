@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace Entities.Services
 {
@@ -18,12 +19,14 @@ namespace Entities.Services
 
         public void StoringInfoAboutNewUser(string firstname, string lastname, string email, string password)
         {
+            var password_hash = Hashing.HashingPassword(password);
+
             var regInfo = new Dictionary<string, string>()
             {
                 { "FIRSTNAME", firstname},
                 { "LASTNAME", lastname},
                 { "EMAIL", email},
-                { "PASSWORD", password},
+                { "PASSWORD", password_hash},
             };
             var cmd = "REGISTER_USER";
 
