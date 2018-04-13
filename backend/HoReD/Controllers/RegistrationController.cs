@@ -24,7 +24,7 @@ namespace HoReD.Controllers
                 {
                     return Conflict();
                 }
-
+                
                 IUserService user = new UserService(_dbContext);
                 user.StoringInfoAboutNewUser(model.FirstName, model.LastName, model.Email, model.Password);
                 return Ok();
@@ -33,7 +33,6 @@ namespace HoReD.Controllers
             {
                 return Unauthorized();
             }
-
         }
     }
 }
