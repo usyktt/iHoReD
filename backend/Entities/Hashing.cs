@@ -17,6 +17,7 @@ namespace Entities
         /// Method for generating salt which then will be used in hashing method
         /// </summary>
         /// <returns>Returns salt.</returns>
+        /// 
         public static string GenerateSalt()
         {
             int workFactor = 12;
