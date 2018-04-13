@@ -1,4 +1,3 @@
-USE [HORED]
 GO
 /****** Object:  Table [dbo].[DISEASES]    Script Date: 13.04.2018 12:52:33 ******/
 SET ANSI_NULLS ON
