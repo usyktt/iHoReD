@@ -18,17 +18,21 @@ namespace HoReD.Controllers
         [AllowAnonymous]
         public IHttpActionResult CreateNewUser(RegistrationBindingModel model)
         {
-            //try
-            //{
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return Conflict();
+                }
+                
                 IUserService user = new UserService(_dbContext);
                 user.StoringInfoAboutNewUser(model.FirstName, model.LastName, model.Email, model.Password);
                 return Ok();
-            /*}
+            }
             catch (Exception)
             {
                 return Unauthorized();
-            }*/
-            
+            }
         }
     }
 }
