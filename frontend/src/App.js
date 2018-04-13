@@ -1,9 +1,10 @@
 import React from 'react';
 import { Component } from 'react';
-
+import { Route, Router,Link, Redirect } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import validator from 'validator';
+import StartPatientPage from './StartPatientPage';
 
 const base_api_url = process.env.REACT_APP_BASE_API_URL;
 var server_url;
@@ -13,7 +14,7 @@ else if(process.env.NODE_ENV==="production")
   server_url="https://hored-backend.azurewebsites.net"
 
 class App extends Component {
-  render() {
+render() {
     return (
         <div className="App container-fluid">
         <Logbar/>
@@ -121,7 +122,9 @@ class Logbar extends React.Component
                     <input className="form-control mr-3"  type="text" placeholder="Login"/> 
                     <input className="form-control mr-3"  type="text" placeholder="Password"/> 
                     <div>
+                    <Link to="/allDiagnoses">
                     <button className="btn btn-info mr-2" type="submit">Sign in</button>
+                    </Link>
                     <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign up</button> 
                     </div>
                     </form> 
@@ -171,18 +174,17 @@ class Logbar extends React.Component
   <div className="modal-footer form-group">
   <div className="row">
   <div className="col-12 col-sm-6 col-md-6">
-        <button type="submit" ref={this.btnSubmit} disabled className="btn btn-info btn-lg">Sign up
-          </button>
+  <Link to="/allDiagnoses" state={{isModal:false}}>
+  <button type="submit" ref={this.btnSubmit} className="btn btn-info btn-lg"> Sign up</button>   
+   </Link>
+  </div>
+    <div className="col-12 col-sm-6 col-md-6"> 
+        <button type="button" className="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
     </div>
-    <div className="col-12 col-sm-6 col-md-6">   
-        <button type="button" className="btn btn-danger btn-lg" data-dismiss="modal">Close
-          </button>
-        </div>
+
     </div>
   </div>
-</form>
-
-      
+</form>      
       </div>
     </div> 
   </div>
