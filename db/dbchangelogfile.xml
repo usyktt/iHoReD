@@ -18,5 +18,9 @@
   <changeSet author="Oleh Rakus" id="V1.2">
     <sqlFile path="V1.2_Procedure_Register_User.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
+
+  <changeSet author="Olya Solyar" id="V2.0">
+    <sqlFile path="V2.0_CREATE_TABLES_FOR_DISEASES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
   
 </databaseChangeLog>
