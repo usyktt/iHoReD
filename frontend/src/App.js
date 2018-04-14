@@ -30,19 +30,23 @@ class App extends Component {
 
 
 class Logbar extends React.Component
-{
-  
+{  
   constructor(props){
     super(props);
-    this.validate=this.validate.bind(this);
+    // this.validate=this.validate.bind(this);
     this.firstName='';
     this.lastName='';
     this.email='';
     this.password='';
+    this.confirmPassword='';
+    this.phone='';
+    
     this.divFName = React.createRef();
     this.divLName = React.createRef();
+    this.divPhone = React.createRef();
     this.divEmail = React.createRef();
     this.divPass = React.createRef();
+    this.divConfirmPass = React.createRef();
     this.btnSubmit= React.createRef();
   }
   
@@ -66,52 +70,85 @@ class Logbar extends React.Component
           //handle error
           console.log(response);
       });
-              }
+  }
 
-   validate() {
+  checkPassword() {
+    var password = this.password;
+    var confirmPassword = this.confirmPassword;
+    this.divConfirmPass.current.textContent="";
+    if (password != confirmPassword) {
+      this.divConfirmPass.current.textContent="Your passwords don't match!";
+      return false;
+    }
+    return true;
+  }
+
+  validateFirstName() {
     var tempFName=false;
-    var tempLName=false;
-    var tempEmail=false;
-    var tempPass=false;
     if ( validator.isAlpha(this.firstName,'en-GB')) {
       tempFName=true;
       this.divFName.current.textContent="";
+      return true;
     } else {
       tempFName=false;
       this.divFName.current.textContent="Your first name is not valid!";
+      return false;
     }
+  }
+
+  validateLastName() {
+    var tempLName=false;
     if ( validator.isAlpha(this.lastName,'en-GB')) {
-      var tempLName=true;
+      tempLName=true;
       this.divLName.current.textContent="";
+      return true;
     } else {
-      var tempLName=false;
+      tempLName=false;
       this.divLName.current.textContent="Your last name is not valid!";
+      return false;
     }
+  }
+
+  validateEmail() {
+    var tempEmail=false;
     if ( validator.isEmail(this.email)) {
       var tempEmail=true;
       this.divEmail.current.textContent="";
+      return true;
     } else {
       var tempEmail=false;
       this.divEmail.current.textContent="Your email is not valid!";
+      return false;
     }
+  }
+  
+  validatePassword() {   
+    var tempPass=false;
     if ( validator.isEmpty(this.password)==false) {
       var tempPass=true;
       this.divPass.current.textContent="";
+      return true;
     } else {
       var tempPass=false;
-      this.divPass.current.textContent="Your have not enter the password!";
+      this.divPass.current.textContent="You have not enter the password!";
+      return false;
     }
+  }
 
-    if(tempLName && tempLName && tempEmail && tempPass)
+  validateAll() {    
+    if(this.validateFirstName() && this.validateLastName() && 
+        this.validateEmail() && this.validatePassword() && this.checkPassword())
     {
       this.btnSubmit.current.disabled=false;
+      return false
     }
     else
     {
       this.btnSubmit.current.disabled=true; 
+      return true;
     }
-    return false;
   }
+
   render() {
   return (<div>
   			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
@@ -131,55 +168,77 @@ class Logbar extends React.Component
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">Please, fill in the fields to register:</h4>
+          <h4 className="modal-title">Registration Form</h4>
           <button type="button" className="close" data-dismiss="modal">&times;</button>
         </div>
          <form className="ml-3 mr-3" onSubmit={this.handleSubmit} noValidate /*method="post" action="api/Registration" 
     encType="application/x-www-form-urlencoded"*/>
-  <div className="form-row mb-3">
-  <div className="form-group col-sm-6 col-xs-12" id="inputFName">
-      <input type="text" className="form-control" onChange={(x => {this.firstName=x.target.value; this.validate()})} name="FIRSTNAME" placeholder="First Name" required/>
+  
+  <div className="form-row mb-3 justify-content-center">
+    <div className="form-group col-sm-6 col-xs-12" id="inputFName">
+      <input type="text" className="form-control" onBlur={(x => {this.firstName=x.target.value; this.validateFirstName()})} name="FIRSTNAME" placeholder="First Name" required/>
       <div id="invalidFname" ref={this.divFName}>
       </div>
     </div>
+  </div>
+  <div className="form-row mb-3 justify-content-center">
     <div className="form-group col-sm-6 col-xs-12" id="inputLName">
-      <input type="text" className="form-control" onChange={(x => {this.lastName=x.target.value; this.validate()})} placeholder="Last Name" name="LASTNAME" required/>
+      <input type="text" className="form-control" onBlur={(x => {this.lastName=x.target.value; this.validateLastName()})} placeholder="Last Name" name="LASTNAME" required/>
       <div id="invalidLname" ref={this.divLName}>
       </div>
     </div>
+  </div>
+  <div className="form-row mb-3 justify-content-center">
+    <div className="form-group col-sm-6 col-xs-12" id="inputPhone">
+      <input type="phone"  className="form-control" onBlur={x=> {this.phone=x.target.value; this.validatePhone()}} placeholder="Phone" name="phone" required/>
+      <div id="invalidPhone" ref={this.divPhone}>
+      </div>
     </div>
-    <div className="form-row mb-3">
+  </div>
+  <div className="form-row mb-3 justify-content-center">
     <div className="form-group col-sm-6 col-xs-12" id="inputEmail">
-      <input type="email"  className="form-control" onChange={(e)=> {this.email=e.target.value; this.validate()}} id="inputEmailtext" placeholder="Email" name="email" required/>
+      <input type="email"  className="form-control" onBlur={x=> {this.email=x.target.value; this.validateEmail()}} id="inputEmailtext" placeholder="Email" name="email" required/>
       <div id="invalidEmail" ref={this.divEmail}>
       </div>
     </div>
+  </div>
+  <div className="form-row mb-3 justify-content-center">
     <div className="form-group col-sm-6 col-xs-12" id="inputPassword">
-      <input type="password"  className="form-control" placeholder="Password" onChange={(x => {this.password=x.target.value; ; this.validate()})} name="password" required/>
+      <input type="password"  className="form-control" placeholder="Password" onBlur={(x => {this.password=x.target.value; this.validatePassword() })} name="password" required/>
       <div id="invalidPassword" ref={this.divPass}>
       </div>
     </div>
+  </div>
+  <div className="form-row mb-3 justify-content-center">
+    <div className="form-group col-sm-6 col-xs-12" id="inputConfirmPassword">
+      <input type="password"  className="form-control" placeholder="Confirm Password" onChange={(x => {this.confirmPassword=x.target.value; this.checkPassword(); this.validateAll()})}  name="confirmPassword" required/>
+      <div id="invalidConfirmPassword" ref={this.divConfirmPass}>
+      </div>
     </div>
-    <div className="form-group col-sm-6 col-xs-12">
+  </div>
+  <div className="form-row mb-3">
+  <div className="form-group col-sm-6 col-xs-12  ">
+  </div>
+  <div className="form-group col-sm-6 col-xs-12  ">
     <div className="form-check">
       <input className="form-check-input" type="checkbox" id="gridCheck"/>
       <label className="form-check-label" htmlFor="gridCheck">
-        Check me out
+        Remember Me
       </label>
     </div>
   </div>
-  <div className="modal-footer form-group">
-  <div className="row">
-  <div className="col-12 col-sm-6 col-md-6">
-        <button type="submit" ref={this.btnSubmit} disabled className="btn btn-info btn-lg">Sign up
-          </button>
+  </div>
+  <div className="row mb-3 justify-content-center">
+    <div className="col-xs-3 col-sm-3 col-md-3">
+      <button type="submit" ref={this.btnSubmit} disabled className="btn btn-info btn-lg mb-3">Sign up
+      </button>
     </div>
-    <div className="col-12 col-sm-6 col-md-6">   
-        <button type="button" className="btn btn-danger btn-lg" data-dismiss="modal">Close
-          </button>
-        </div>
+    <div className="col-xs-3 col-sm-3 col-md-3" >   
+      <button type="button" className="btn btn-danger btn-lg" data-dismiss="modal">Close
+      </button>
     </div>
   </div>
+
 </form>
 
       

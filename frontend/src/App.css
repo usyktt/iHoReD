@@ -32,12 +32,20 @@
   background-color:#80bfff;
 }
 
+.modal-header {
+  border-bottom: none;
+}
+
 .modal-backdrop {
   background-color:#66b3ff;
 }
 
 .modal-content {
   background-color:#cce6ff;
+}
+
+.modal-footer {
+  border-top: none;
 }
 
 .list-group-item-custom {
