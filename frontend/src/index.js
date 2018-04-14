@@ -5,9 +5,9 @@ import { Component } from 'react';
 import { Route, Switch, BrowserRouter, Router} from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Diagnoses from './Diagnoses';
-import Edit from './Edit';
-import StartPatientPage from './StartPatientPage';
+import Diagnoses from './components/Diagnoses';
+import Edit from './components/Edit';
+import StartPatientPage from './components/StartPatientPage';
 import registerServiceWorker from './registerServiceWorker';
 
 class Home extends Component {

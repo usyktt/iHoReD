@@ -4,7 +4,7 @@ import { Route, Router,Link, Redirect } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import validator from 'validator';
-import StartPatientPage from './StartPatientPage';
+import StartPatientPage from './components/StartPatientPage';
 
 const base_api_url = process.env.REACT_APP_BASE_API_URL;
 var server_url;

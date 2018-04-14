@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
+
 import axios from 'axios';
 
 import validator from 'validator';
