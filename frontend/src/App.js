@@ -114,7 +114,7 @@ class Logbar extends React.Component
     return false;
   }
   handleClick = () => {
-    window.location.assign("/allDiagnoses")
+    window.location.assign("/startPage")
   }   
   render() {
   return (<div>
@@ -178,7 +178,7 @@ class Logbar extends React.Component
   <div className="row">
   <div className="col-12 col-sm-6 col-md-6">
   
-  <button type="submit"onClick={this.handleClick}  ref={this.btnSubmit} className="btn btn-info btn-lg"> Sign up</button>   
+  <button type="submit"onClick={this.handleClick}  ref={this.btnSubmit} disabled className="btn btn-info btn-lg"> Sign up</button>   
   
   </div>
     <div className="col-12 col-sm-6 col-md-6"> 
