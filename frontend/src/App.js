@@ -113,6 +113,9 @@ class Logbar extends React.Component
     }
     return false;
   }
+  handleClick = () => {
+    window.location.assign("/allDiagnoses")
+  }   
   render() {
   return (<div>
   			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
@@ -174,9 +177,9 @@ class Logbar extends React.Component
   <div className="modal-footer form-group">
   <div className="row">
   <div className="col-12 col-sm-6 col-md-6">
-  <Link to="/allDiagnoses" state={{isModal:false}}>
-  <button type="submit" ref={this.btnSubmit} className="btn btn-info btn-lg"> Sign up</button>   
-   </Link>
+  
+  <button type="submit"onClick={this.handleClick}  ref={this.btnSubmit} className="btn btn-info btn-lg"> Sign up</button>   
+  
   </div>
     <div className="col-12 col-sm-6 col-md-6"> 
         <button type="button" className="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
