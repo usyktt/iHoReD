@@ -26,6 +26,7 @@ namespace Entities.Services
                 { "FIRSTNAME", firstname},
                 { "LASTNAME", lastname},
                 { "EMAIL", email},
+                { "LOGIN", email}, 
                 { "PASSWORD", password_hash},
             };
             var cmd = "REGISTER_USER";
