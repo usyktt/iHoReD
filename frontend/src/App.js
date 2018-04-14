@@ -66,6 +66,7 @@ class Logbar extends React.Component
     axios.post(server_url + '/api/Registration',user)
       .then(function (response) {
           //handle success
+          window.location.assign("/startPage")
           console.log(response);
       })
       .catch(function (response) {
@@ -165,9 +166,7 @@ class Logbar extends React.Component
       return true;
     }
   }
-  handleClick = () => {
-    window.location.assign("/startPage")
-  }   
+   
   render() {
   return (<div>
   			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
@@ -251,7 +250,7 @@ class Logbar extends React.Component
   </div>
   <div className="row mb-3 justify-content-center">
     <div className="col-xs-3 col-sm-3 col-md-3">
-      <button type="submit" onClick={this.handleClick} ref={this.btnSubmit} disabled className="btn btn-info btn-lg mb-3">Sign up
+      <button type="submit"  ref={this.btnSubmit} disabled className="btn btn-info btn-lg mb-3">Sign up
       </button>
     </div>
     <div className="col-xs-3 col-sm-3 col-md-3" >   
