@@ -27,6 +27,9 @@
     <sqlFile path="V2.1_INSERT_DATA_INTO_TABLES_FOR_DISEASES.sql" endDelimiter="\nGO" encoding="UTF-16LE" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
   
+  <changeSet author="Vadym Ivanov" id="V2.3">
+    <sqlFile path="V2.3_PROCEDURE_GET_USER_INFO_START_PAGE.sql" endDelimiter="\nGO" encoding="UTF-16LE" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
   <changeSet author="Mariia Shkolyk" id="V2.2">
     <sqlFile path="V2.2_ADD_IS_ACTIVATED_COLUMN_TO_USERS_TABLE.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
     <sqlFile path="V2.2_UPDATE_PROCEDURE_REGISTER_USER.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
