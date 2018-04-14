@@ -59,7 +59,8 @@ class Logbar extends React.Component
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      password: this.password
+      password: this.password,
+      phone: this.phone
     };
 
     axios.post(server_url + '/api/Registration',user)
@@ -110,6 +111,21 @@ class Logbar extends React.Component
     }
   }
 
+  validatePhone() {
+    var tempPhone=false;
+    if ( validator.isMobilePhone(this.phone, 'uk-UA')) {
+      var tempPhone=true;
+      this.divPhone.current.textContent="";
+      console.log(this.phone);
+      return true;
+    } else {
+      var tempPhone=false;
+      this.divPhone.current.textContent="Your phone is not valid!";
+      return false;
+    }
+    
+  }
+
   validateEmail() {
     var tempEmail=false;
     if ( validator.isEmail(this.email)) {
@@ -137,7 +153,7 @@ class Logbar extends React.Component
   }
 
   validateAll() {    
-    if(this.validateFirstName() && this.validateLastName() && 
+    if(this.validateFirstName() && this.validateLastName() && this.validatePhone() && 
         this.validateEmail() && this.validatePassword() && this.checkPassword())
     {
       this.btnSubmit.current.disabled=false;
@@ -195,7 +211,7 @@ class Logbar extends React.Component
   </div>
   <div className="form-row mb-3 justify-content-center">
     <div className="form-group col-sm-6 col-xs-12" id="inputPhone">
-      <input type="phone"  className="form-control" onBlur={x=> {this.phone=x.target.value; this.validatePhone()}} placeholder="Phone" name="phone" required/>
+      <input type="tel"  className="form-control" onBlur={x=> {this.phone=x.target.value; this.validatePhone()}} placeholder="Phone" name="phone" required/>
       <div id="invalidPhone" ref={this.divPhone}>
       </div>
     </div>
@@ -216,7 +232,7 @@ class Logbar extends React.Component
   </div>
   <div className="form-row mb-3 justify-content-center">
     <div className="form-group col-sm-6 col-xs-12" id="inputConfirmPassword">
-      <input type="password"  className="form-control" placeholder="Confirm Password" onChange={(x => {this.confirmPassword=x.target.value; this.checkPassword(); this.validateAll()})}  name="confirmPassword" required/>
+      <input type="password"  className="form-control" placeholder="Confirm Password" onChange={(x => {this.confirmPassword=x.target.value; this.checkPassword(); this.validateAll()})} onPaste={x => {x.preventDefault()}} name="confirmPassword" required/>
       <div id="invalidConfirmPassword" ref={this.divConfirmPass}>
       </div>
     </div>
