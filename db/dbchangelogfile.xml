@@ -24,7 +24,7 @@
   </changeSet>
   
   <changeSet author="Olya Solyar" id="V2.1">
-    <sqlFile path="V2.1_INSERT_DATA_INTO_TABLES_FOR_DISEASES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.1_INSERT_DATA_INTO_TABLES_FOR_DISEASES.sql" endDelimiter="\nGO" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
 
 </databaseChangeLog>
