@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Component } from 'react';
-
+import { Link } from 'react-router-dom';
+import './App.css';
 import axios from 'axios';
 
 import validator from 'validator';
@@ -29,10 +31,12 @@ function Logbar(props){
   	<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
  			<p className='text-white mr-1'> </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'></p>
    		<div className = "container-fluid justify-content-end align-items-center navbar-collapse collapse ">
-        <form className="form-inline" action="/action_page.php">
+        <form className="form-inline col-sm-2" action="/action_page.php">
           <div>
-            <h7>Ihor Nytrebych </h7>
-            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign out</button> 
+            Ihor Nytrebych     
+            <Link to="/">   
+              <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign out</button> 
+            </Link>
           </div>
         </form> 
       </div>

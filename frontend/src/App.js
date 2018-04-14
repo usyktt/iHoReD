@@ -1,9 +1,10 @@
 import React from 'react';
 import { Component } from 'react';
-
+import { Route, Router,Link, Redirect } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import validator from 'validator';
+import StartPatientPage from './StartPatientPage';
 
 const base_api_url = process.env.REACT_APP_BASE_API_URL;
 var server_url;
@@ -13,7 +14,7 @@ else if(process.env.NODE_ENV==="production")
   server_url="https://hored-backend.azurewebsites.net"
 
 class App extends Component {
-  render() {
+render() {
     return (
         <div className="App container-fluid">
         <Logbar/>
@@ -148,7 +149,9 @@ class Logbar extends React.Component
       return true;
     }
   }
-
+  handleClick = () => {
+    window.location.assign("/startPage")
+  }   
   render() {
   return (<div>
   			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
@@ -158,7 +161,9 @@ class Logbar extends React.Component
                     <input className="form-control mr-3"  type="text" placeholder="Login"/> 
                     <input className="form-control mr-3"  type="text" placeholder="Password"/> 
                     <div>
+                    <Link to="/allDiagnoses">
                     <button className="btn btn-info mr-2" type="submit">Sign in</button>
+                    </Link>
                     <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign up</button> 
                     </div>
                     </form> 
@@ -230,7 +235,7 @@ class Logbar extends React.Component
   </div>
   <div className="row mb-3 justify-content-center">
     <div className="col-xs-3 col-sm-3 col-md-3">
-      <button type="submit" ref={this.btnSubmit} disabled className="btn btn-info btn-lg mb-3">Sign up
+      <button type="submit" onClick={this.handleClick} ref={this.btnSubmit} disabled className="btn btn-info btn-lg mb-3">Sign up
       </button>
     </div>
     <div className="col-xs-3 col-sm-3 col-md-3" >   
