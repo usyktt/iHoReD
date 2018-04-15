@@ -10,6 +10,8 @@ import Edit from './components/Edit';
 import StartPatientPage from './components/StartPatientPage';
 import registerServiceWorker from './registerServiceWorker';
 
+export var globalvar = 7;
+
 class Home extends Component {
     render() {
       return (
