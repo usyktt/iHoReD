@@ -52,7 +52,7 @@ namespace Entities.Services
                     RoleName = values.GetValue(3).ToString(),
                     Login = values.GetValue(4).ToString(),
                     Password = values.GetValue(5).ToString(),
-                    Email = values.GetValue(3).ToString(),
+                    Email = values.GetValue(6).ToString(),
                 };
 
             _dbContext.Dispose();
