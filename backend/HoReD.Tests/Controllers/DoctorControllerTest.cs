@@ -170,7 +170,7 @@ namespace HoReDTests.Controllers
         public List<string[]> GetFakeDoctorsByProfession(string profession)
         {
             var list = new List<string[]>();
-            var prof1 = new[] { "Halenok", "Iryna" };
+            var prof1 = new string[] { "Halenok", "Iryna" };
             var prof2 = new string[] { "Solyar", "Olya" };
             list.Add(prof1);
             list.Add(prof2);
