@@ -26,7 +26,6 @@ namespace Entities.Services
                 { "FIRSTNAME", firstname},
                 { "LASTNAME", lastname},
                 { "EMAIL", email},
-                { "LOGIN", email}, 
                 { "PASSWORD", password_hash},
             };
             var cmd = "REGISTER_USER";
@@ -34,12 +33,12 @@ namespace Entities.Services
             _dbContext.InsertNewUser(cmd, regInfo);
         }
 
-        public User GetUserInfo(string login, string password)
+        public User GetUserInfo(string email, string password)
         {
             const string cmd = "GET_USER_INFO_START_PAGE";
             var param = new Dictionary<string, object>()
             {
-                {"@LOGIN", login},
+                {"@EMAIL", email},
                 {"@PASSWORD", password}
             };
             var str = _dbContext.ExecuteSqlQuery(cmd, '*', param);
@@ -50,9 +49,8 @@ namespace Entities.Services
                     FirstName = values.GetValue(1).ToString(),
                     LastName = values.GetValue(2).ToString(),
                     RoleName = values.GetValue(3).ToString(),
-                    Login = values.GetValue(4).ToString(),
-                    Password = values.GetValue(5).ToString(),
-                    Email = values.GetValue(6).ToString(),
+                    Password = values.GetValue(4).ToString(),
+                    Email = values.GetValue(5).ToString(),
                 };
 
             _dbContext.Dispose();

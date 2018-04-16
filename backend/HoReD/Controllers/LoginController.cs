@@ -31,7 +31,7 @@ namespace HoReD.Controllers
 
                 IUserService user = new UserService(_dbContext);
                 User currentUser = new User();
-                currentUser = user.GetUserInfo("izhydchukdoc", "hgKJ7&hjv*");
+                currentUser = user.GetUserInfo(model.Login, model.Password);
                 return Ok(currentUser);
             }
             catch (Exception)
