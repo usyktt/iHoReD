@@ -63,7 +63,7 @@ class Authorization extends React.Component {
       return(
         <div>
           <form className="ml-3 mr-3" onSubmit={this.handleSubmitAuth} noValidate >
-            <input className="form-control mr-3"  type="text" placeholder="Login" onBlur={(x => {this.loginAuth=x.target.value; })}/> 
+            <input className="form-control mr-3"  type="text" placeholder="Email" onBlur={(x => {this.loginAuth=x.target.value; })}/> 
             <input className="form-control mr-3"  type="text" placeholder="Password" onBlur={(x => {this.passwordAuth=x.target.value; })}/>           
             <button type="submit"  ref={this.btnSubmit} className="btn btn-info btn-lg mb-3">Sign in</button>
           </form>
