@@ -42,9 +42,9 @@
   </changeSet>
 
   <changeSet author="Oleh Rakus" id="V2.5">
-    <sqlFile path="V2.5_CREATE_TABLE_ALLERGIES" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
-    <sqlFile path="V2.5_CREATE_TABLE_USERS_ALLERGIES" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
-    <sqlFile path="V2.5_ADD_NOT_NULL_CONSTRAINT_TO_ALLERGIES_AND_USERS_ALLERGIES_TABLES" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.5_CREATE_TABLE_ALLERGIES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.5_CREATE_TABLE_USERS_ALLERGIES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.5_ADD_NOT_NULL_CONSTRAINT_TO_ALLERGIES_AND_USERS_ALLERGIES_TABLES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
 
   <changeSet author="Iryna Halenok" id="V2.6">
