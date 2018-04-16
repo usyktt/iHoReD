@@ -31,10 +31,6 @@
     <sqlFile path="V2.2_ADD_IS_ACTIVATED_COLUMN_TO_USERS_TABLE.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
     <sqlFile path="V2.2_UPDATE_PROCEDURE_REGISTER_USER.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
-  
-    <changeSet author="Iryna Halenok" id="V2.4">
-    <sqlFile path="V2.4_UPDATE_PROCEDURE_REGISTER_USER.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
-  </changeSet>
 
   <changeSet author="Oleh Rakus" id="V2.5">
     <sqlFile path="V2.5_CREATE_TABLE_ALLERGIES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
