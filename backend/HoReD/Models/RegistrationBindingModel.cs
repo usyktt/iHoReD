@@ -25,5 +25,12 @@ namespace HoReD.Models
         [RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,30}$")]
         public string Password { get; set; }
 
+        /*[Required(AllowEmptyStrings = false)]
+        [RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,30}$")]
+        public string ConfirmPassword { get; set; }*/
+
+        [Required(AllowEmptyStrings = false)]
+        [RegularExpression(@"^(\+[0-9]{12})$")]
+        public string Phone { get; set; }
     }
 }
