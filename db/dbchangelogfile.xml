@@ -44,4 +44,8 @@
     <sqlFile path="V2.6_UPDATE_PROCEDURE_REGISTER_USER.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
    </changeSet>
 
+  <changeSet author="Iryna Halenok" id="V2.7">
+    <sqlFile path="V2.7_ALTER_USERS_PASSWORD_COLUMN_SIZE.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.7_PROCEDURE_GET_USER_PASSWORD.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+   </changeSet>
 </databaseChangeLog>
