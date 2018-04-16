@@ -30,7 +30,7 @@ namespace HoReD.Models
         public string ConfirmPassword { get; set; }*/
 
         [Required(AllowEmptyStrings = false)]
-        [RegularExpression(@"^(\+[0-9]{12})$")]
+        [RegularExpression(@"^(\+[0-9]{12})$|^([0-9]{10})$")]
         public string Phone { get; set; }
     }
 }
