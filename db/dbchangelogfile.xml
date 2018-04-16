@@ -33,7 +33,6 @@
   </changeSet>
   
     <changeSet author="Iryna Halenok" id="V2.4">
-    <sqlFile path="V2.4_ALTER_TABLE_USERS.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
     <sqlFile path="V2.4_UPDATE_PROCEDURE_REGISTER_USER.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
 
