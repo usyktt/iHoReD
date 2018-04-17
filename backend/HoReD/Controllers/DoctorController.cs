@@ -9,6 +9,7 @@ namespace HoReD.Controllers
     /// <summary>
     /// Controller that represents information about Doctors
     /// </summary>
+    //[RoutePrefix("api/Doctor")]
     public class DoctorController : ApiController
     {
         private readonly IDoctorService _doctorService;
@@ -34,17 +35,17 @@ namespace HoReD.Controllers
         }
 
         [HttpGet]
-        [Route("GetDoctors/{profession}")]
-        public List<string[]> GetDoctorsByProfession(string profession)
+        [Route("GetDoctors/{professionId}")]
+        public List<string[]> GetDoctorsByProfession(string professionId)
         {
-            return _doctorService.GetDoctorsByProfession(profession);
+            return _doctorService.GetDoctorsByProfessionId(Convert.ToInt32( professionId));
         }
 
         [HttpGet]
         [ActionName("GetProfessions")]
         [Route("ProfessionsStatic/{isStatic=true}")]
         [Route("ProfessionsNotStatic/{isStatic=false}")]
-        public List<string> GetProfessions(bool isStatic)
+        public List<string[]> GetProfessions(bool isStatic)
         {
             return _doctorService.GetProfessions(isStatic);
         }
