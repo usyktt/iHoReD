@@ -59,4 +59,8 @@
     <sqlFile path="V2.9_PROCEDURE_GET_DOCTORS_BY_PROFESSION_ID.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
   
+  <changeSet author="Maksym Sikorskyi" id="V2.9">
+    <sqlFile path="V2.9_PROCEDURE_GET_PROFESSIONS.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
+  
 </databaseChangeLog>
