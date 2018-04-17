@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Net;
+using System.Web.Http;
 using HoReD.Controllers;
 using Entities;
 using Entities.Services;
@@ -8,6 +10,8 @@ using NUnit.Framework;
 using Moq;
 using HoReD;
 using HoReD.Models;
+using System.Web.Http.Results;
+
 
 namespace HoReD.Tests.Controllers
 {
@@ -22,26 +26,50 @@ namespace HoReD.Tests.Controllers
         {
             mock = new Mock<IUserService>();
         }
+
         [Test]
         public void CreateNewUser_ReturnOK()
         {
-            /*bool stat = false;
-            var fake_list = GetFakeBindingModel();
-            mock.Setup(repo => repo.CreateNewUser(stat)).Returns(fake_list);
-            var controller = new DoctorController(mock.Object);
+            var controller=new RegistrationController();
+            var model = GetFakeBindingModel();
+            IHttpActionResult result = controller.CreateNewUser(model);
+            var contentResult = result as NegotiatedContentResult<RegistrationBindingModel>;
+            //Assert.IsNotNull(result);
+            Assert.AreEqual(HttpStatusCode.Accepted, contentResult.StatusCode);
+            //Assert.That(() => controller.CreateNewUser(model),
+            //    Throws.TypeOf<NullReferenceException>());
 
-            // Act
-            var result = controller.GetProfessions(stat);*/
+            //Assert.IsNotNull(contentResult.Content);
+
         }
+
+        [Test]
+        public void CreateNewUser_Email_IsValid()
+        {
+            var model = new RegistrationBindingModel()
+            {
+                FirstName = "TestFirstname",
+                LastName = "testLastname",
+                Email = "",
+                Password = "testPassword",
+                Phone = "testPhone"
+            };
+            var controller = new RegistrationController();
+            var result = controller.CreateNewUser(model);
+            Assert.IsInstanceOf<UnauthorizedResult>(result);
+        }
+
+
 
         public RegistrationBindingModel GetFakeBindingModel()
         {
             var testParameter = new RegistrationBindingModel()
             {
-                FirstName = "testFirstname",
-                LastName = "testLastname",
-                Email = "testEmail",
-                Password = "testPassword"
+                FirstName = "TestFirstname",
+                LastName = "TestLastname",
+                Email = "testEmail@ukr.net",
+                Password = "testPassword1$",
+                Phone = "0639637918"
             };
             return testParameter;
         }
