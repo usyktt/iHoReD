@@ -12,11 +12,7 @@ namespace HoReD.Controllers
     public class DoctorController : ApiController
     {
         private readonly IDoctorService _doctorService;
-
-        public DoctorController()
-        {
-            _doctorService = new DoctorService(new DbContext());
-        }
+        
         public DoctorController(IDoctorService doctorService)
         {
             _doctorService = doctorService;
