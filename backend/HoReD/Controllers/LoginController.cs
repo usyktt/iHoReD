@@ -21,7 +21,6 @@ namespace HoReD.Controllers
 
         //Adds to system inforation about new user
         [HttpPost]
-        [AllowAnonymous]
         public IHttpActionResult LoginUser(LoginUserBindingModel model)
         {
             try
@@ -31,8 +30,17 @@ namespace HoReD.Controllers
                     return Conflict();
                 }
 
-                var currentUser = _userService.GetUserInfo(model.Login, model.Password);
-                return Ok(currentUser);
+                var currentUser = _userService.GetUserInfo(model.Email);
+                var passwordRegForm = model.Password;
+                var isPasswordEqual = Hashing.VerifyPassword(model.Password, currentUser.Password);
+                if (isPasswordEqual)
+                {
+                    return Ok(currentUser);
+                }
+                else
+                {
+                    return Unauthorized();
+                }
             }
             catch (Exception)
             {

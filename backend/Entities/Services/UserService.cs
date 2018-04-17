@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BCrypt.Net;
 
 namespace Entities.Services
 {
@@ -33,13 +32,12 @@ namespace Entities.Services
             _dbContext.InsertNewUser(cmd, regInfo);
         }
 
-        public User GetUserInfo(string email, string password)
+        public User GetUserInfo(string email)
         {
             const string cmd = "GET_USER_INFO_START_PAGE";
             var param = new Dictionary<string, object>()
             {
-                {"@EMAIL", email},
-                {"@PASSWORD", password}
+                {"EMAIL", email},
             };
             var str = _dbContext.ExecuteSqlQuery(cmd, '*', param);
             var values = str.Split('*');
@@ -55,6 +53,11 @@ namespace Entities.Services
 
             _dbContext.Dispose();
             return user;
+        }
+
+        public void OpenConnection()
+        {
+            _dbContext.OpenConnection();
         }
     }
 }
