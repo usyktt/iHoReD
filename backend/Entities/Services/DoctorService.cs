@@ -39,19 +39,20 @@ namespace Entities.Services
             return list;
         }
 
-        public List<string> GetProfessions(bool isStatic)
+        public List<string[]> GetProfessions(bool isStatic)
         {
-            const string cmd = "Get_List_Professions";
+            const string cmd = "GET_PROFESSIONS";
             var param = new Dictionary<string, object>()
             {
                 {"@Is_Static", isStatic}
             };
             var str = _dbContext.ExecuteSqlQuery(cmd, '*',param);
             var values = str.Split('*');
-            var list = new List<string>();
-            for (int i = 0; i < values.Length; i ++)
+            var list = new List<string[]>();
+            for (int i = 0; i < values.Length-2; i += 3)
             {
-                list.Add(values.GetValue(i).ToString());
+                string[] name = { values.GetValue(i).ToString(), values.GetValue(i + 1).ToString(), values.GetValue(i + 2).ToString() };
+                list.Add(name);
             }
             _dbContext.Dispose();
             return list;
@@ -70,6 +71,25 @@ namespace Entities.Services
             for (int i = 0; i < (values.Length-1); i+=2)
             {
                 string[] name = {values.GetValue(0+i).ToString(), values.GetValue(1+i).ToString()};
+                list.Add(name);
+
+            }
+            _dbContext.Dispose();
+            return list;
+        }
+        public List<string[]> GetDoctorsByProfessionId(int professionId)
+        {
+            const string cmd = "GET_DOCTORS_BY_PROFESSION_ID";
+            var param = new Dictionary<string, object>()
+            {
+                {"@PROFESSION_ID", professionId}
+            };
+            var str = _dbContext.ExecuteSqlQuery(cmd, '*', param);
+            var values = str.Split('*');
+            var list = new List<string[]>();
+            for (int i = 0; i < (values.Length - 1); i += 2)
+            {
+                string[] name = { values.GetValue(0 + i).ToString(), values.GetValue(1 + i).ToString() };
                 list.Add(name);
 
             }
