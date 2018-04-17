@@ -42,11 +42,11 @@ class Authorization extends React.Component {
     //const
 
     var userAuth ={
-      login: this.loginAuth,
+      email: this.loginAuth,
       password: this.passwordAuth
     }
 
-    axios.post(server_url + '/LoginUser',userAuth)
+    axios.post(server_url + '/api/Login',userAuth)
       .then(function (response) {
           //handle success
           window.location.assign("/startPage")
