@@ -10,5 +10,6 @@ namespace Entities.Services
 
         List<string[]> GetDoctorsByProfession(string profession);
         List<string[]> GetDoctorsByProfessionId(int professionId);
+        List<string[]> GetDoctorSchedule(int doctorId);
     }
 }
