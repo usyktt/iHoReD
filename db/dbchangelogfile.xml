@@ -79,5 +79,9 @@
   <changeSet author="Oleh Rakus" id="V2.14">
     <sqlFile path="V2.14_CREATE_DOCTORS_RULES_SET_TABLE.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
+
+  <changeSet author="Oleh Rakus" id="V2.15">
+    <sqlFile path="V2.15_FIXED_INCORECT_TABLE_NAME.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
     
 </databaseChangeLog>
