@@ -71,5 +71,9 @@
   <changeSet author="Tetiana Usyk" id="V2.12">
     <sqlFile path="V2.12_PROCEDURE_GET_WORKING_HOURS.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
+
+  <changeSet author="Oleh Rakus" id="V2.13">
+    <sqlFile path="V2.13_CREATE_RULES_TABLE.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
     
 </databaseChangeLog>
