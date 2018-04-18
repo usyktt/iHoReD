@@ -69,7 +69,7 @@
   </changeSet>
   
   <changeSet author="Tetiana Usyk" id="V2.12">
-    <sqlFile path=" V2.12_PROCEDURE_GET_WORKING_HOURS.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.12_PROCEDURE_GET_WORKING_HOURS.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
     
 </databaseChangeLog>
