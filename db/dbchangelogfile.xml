@@ -79,5 +79,10 @@
   <changeSet author="Oleh Rakus" id="V2.14">
     <sqlFile path="V2.14_CREATE_DOCTORS_RULES_SET_TABLE.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
+
+  <changeSet author="Iryna Halenok" id="V2.17">
+    <sqlFile path="V2.17_CREATE_VISITS_TABLE.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.17_CREATE_PROCEDURE_INSERT_VISIT.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
     
 </databaseChangeLog>
