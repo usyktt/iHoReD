@@ -84,4 +84,8 @@
     <sqlFile path="V2.15_FIXED_INCORECT_TABLE_NAME.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
     
+  <changeSet author="Oleh Rakus" id="V2.16">
+    <sqlFile path="V2.16_ADD_CONSTRAINT_TO_HOUR_START_AND_HOUR_END_TABLES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
+
 </databaseChangeLog>
