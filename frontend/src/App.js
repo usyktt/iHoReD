@@ -61,11 +61,24 @@ class Authorization extends React.Component {
 
     render() {
       return(
-        <div>
-          <form className="ml-3 mr-3" onSubmit={this.handleSubmitAuth} noValidate >
-            <input className="form-control mr-3"  type="text" placeholder="Email" onBlur={(x => {this.loginAuth=x.target.value; })}/> 
-            <input className="form-control mr-3"  type="text" placeholder="Password" onBlur={(x => {this.passwordAuth=x.target.value; })}/>           
-            <button type="submit"  ref={this.btnSubmit} className="btn btn-info btn-lg mb-3">Sign in</button>
+        <div className='divRender'>
+          <form className="ml-3 mr-3 navbarForm" onSubmit={this.handleSubmitAuth} noValidate >
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-3 mb-2 navbarDiv">
+                  <input className="form-control col-12"  type="text" placeholder="Email" onBlur={(x => {this.loginAuth=x.target.value; })}/> 
+                </div>
+                <div className="col-xs-12 col-sm-12 col-md-3 mb-2">
+                  <input className="form-control col-12"  type="text" placeholder="Password" onBlur={(x => {this.passwordAuth=x.target.value; })}/>           
+                </div>
+                <div className="col-xs-12 col-sm-12 col-md-3 mb-2">
+                  <button type="submit"  ref={this.btnSubmit} className="btn btn-info col-xs-6">Sign in</button>
+                </div>
+                <div className="col-xs-12 col-sm-12 col-md-3 mb-2">
+                  <button type="button" className="btn btn-info" data-toggle="modal" data-target="#myModal">Sign up</button> 
+                </div>
+              </div>
+            </div>          
           </form>
         </div>
       );
@@ -212,15 +225,12 @@ class Logbar extends React.Component
    
   render() {
   return (<div>
-  			<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
+  		<nav className="navbar navbar-expand-sm navbar-custom  navbar-default sticky-top navbar-toggleable-md">
  			<p className='text-white mr-1'> </p><p className = 'text-white font-weight-bold mr-3' id = 'usernamebar'></p>
-   			<div className = "container-fluid justify-content-center align-items-center navbar-collapse collapse ">
-                <form className="form-inline" action="/action_page.php">         
-                    <Authorization/>
-                    <button type="button" className="btn btn-info " data-toggle="modal" data-target="#myModal">Sign up</button> 
-                    </form> 
-                    </div>
-        </nav>            
+   			<div className = "container-fluid justify-content-center align-items-center navbar-collapse collapse navbarContainer">
+            <Authorization/>
+        </div>
+      </nav>            
   <div className="modal fade" id="myModal">
     <div className="modal-dialog">
       <div className="modal-content">
