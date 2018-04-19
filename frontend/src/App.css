@@ -81,6 +81,40 @@
 }
 .form-control:focus, input:focus{
   outline: none;
+  }
+  
+  #editInfoWindow {
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #adc9ff;
+    text-align: start;
+    padding: 2%;
+  }
+  
+  label {
+    margin-bottom: 0px;
+  }
+  
+  #editInfoWindow .margin {
+    margin-top: 15px;
+  }
+  
+  .editInfoTitle {
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+  
+  #sexButtonWindow {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  #basicInfoID {
+    float: left;
+  }
+  
+  #spanNearButton {
+    float: left;
 }
 
 .navbarForm {

@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "jquery": "^3.3.1",
+    "npm": "^5.8.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-router-dom": "^4.2.2",
@@ -13,7 +14,7 @@
     "fullcalendar": "^3.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3010 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
