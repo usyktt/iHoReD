@@ -29,7 +29,7 @@ namespace Entities.Services
             };
             var cmd = "REGISTER_USER";
 
-            _dbContext.InsertNewUser(cmd, regInfo);
+            _dbContext.Insert(cmd, regInfo);
         }
 
         public User GetUserInfo(string email)

@@ -34,7 +34,7 @@ namespace HoReD.Controllers
         [Route("GetDoctors/{professionId}")]
         public List<string[]> GetDoctorsByProfession(string professionId)
         {
-            return _doctorService.GetDoctorsByProfessionId(Convert.ToInt32( professionId));
+            return _doctorService.GetDoctorsByProfessionId(Convert.ToInt32(professionId));
         }
 
         [HttpGet]

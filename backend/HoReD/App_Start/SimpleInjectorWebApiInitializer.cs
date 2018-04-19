@@ -1,5 +1,3 @@
-using Entities.Services;
-
 [assembly: WebActivator.PostApplicationStartMethod(typeof(HoReD.App_Start.SimpleInjectorWebApiInitializer), "Initialize")]
 
 namespace HoReD.App_Start
@@ -8,7 +6,8 @@ namespace HoReD.App_Start
     using SimpleInjector;
     using SimpleInjector.Integration.WebApi;
     using SimpleInjector.Lifestyles;
-    
+    using Entities.Services;
+
     public static class SimpleInjectorWebApiInitializer
     {
         /// <summary>Initialize the container and register it as Web API Dependency Resolver.</summary>
@@ -32,7 +31,6 @@ namespace HoReD.App_Start
             container.Register<IUserService, UserService>(Lifestyle.Scoped);
             container.Register<IDbContext, DbContext>(Lifestyle.Scoped);
             container.Register<IDoctorService, DoctorService>(Lifestyle.Scoped);
-
             // For instance:
             // container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
         }

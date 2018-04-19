@@ -37,7 +37,7 @@ namespace Entities.Services
             _myConnection.Open();
         }
 
-        public void InsertNewUser(string cmd, IDictionary<string, string> usersInfo)
+        public void Insert(string cmd, IDictionary<string, string> usersInfo)
         {
             
         }
