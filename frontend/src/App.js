@@ -5,6 +5,7 @@ import './App.css';
 import axios from 'axios';
 import validator from 'validator';
 import StartPatientPage from './components/StartPatientPage';
+import Calendar from './components/Calendar';
 
 const base_api_url = process.env.REACT_APP_BASE_API_URL;
 var server_url;
@@ -21,7 +22,7 @@ render() {
         <div className="wrapper row mt-4">
         <ProfessionsTable/>
         <ProfessionTable/>
-        <Datepicker/>
+        <Calendar/>
         </div>
         <Footerbar/>
       </div>
