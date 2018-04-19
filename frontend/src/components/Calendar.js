@@ -2,30 +2,21 @@ import React from 'react';
 import { Component } from 'react';
 import $ from 'jquery';
 import 'fullcalendar';
-/*$(document).ready(function() {
-$('#calendar').fullCalendar({
-    dayClick: function(date, jsEvent, view) {
-  
-      alert('Clicked on: ' + date.format());
-  
-      alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-  
-      alert('Current view: ' + view.name);
-  
-      // change the day's background color just for fun
-      $(this).css('background-color', 'red');
-  
-    }
-  });
-});*/
+import axios from 'axios';
+var server_url;
+if(process.env.NODE_ENV==="development")
+  server_url="http://localhost:58511"
+else if(process.env.NODE_ENV==="production")
+  server_url="https://hored-backend.azurewebsites.net"
 
 class Calendar extends Component {
+    
 
     addEvent(newtitle, newstart, newend, newallday) {
         var event={ 
         title  : newtitle,
         start  : newstart,
-        end  : newstart,
+        end  : newend,
         allDay : newallday // will make the time show
     };
         $('#calendar').fullCalendar( 'renderEvent', event, true);
@@ -33,12 +24,23 @@ class Calendar extends Component {
 
 
     componentDidMount(){
+        axios.get(server_url+'/GetDoctorSchedule/'+4)
+        .then(response => {
+
+            response.data.forEach(startEndTime => {
+               //doctor.FirstName + ' ' + doctor.LastName + '</a>';
+               this.addEvent("hhh", startEndTime[0], startEndTime[1], false);
+            });
+          
+        });
       const { calendar } = this.refs;
-  
+        
       $(document).ready(function() {
         // page is ready
         $('#calendar').fullCalendar({
             // enable theme
+        eventLimit:true,
+
         theme: true,
         // emphasizes business hours
         businessHours: true,
@@ -67,121 +69,6 @@ class Calendar extends Component {
             );
             $('#calendar').fullCalendar('unselect');
         },
-
-
-        events: [
-            // all day event
-            {
-              title  : 'Meeting',
-              start  : '2018-04-17'
-            },
-            // long-term event 
-            {
-              title  : 'Conference',
-              start  : '2018-04-14',
-              end    : '2015-11-16'
-            },
-            // short term event 
-            {
-              title  : 'Dentist',
-              start  : '2018-04-19T11:30:00',
-              end  : '2018-04-19T12:30:00',
-              allDay : false // will make the time show
-            },
-
-            {
-                title  : 'ttt',
-                start  : '2018-04-19T13:30:00',
-                end  : '2018-04-19T16:30:00',
-                allDay : false // will make the time show
-              },
-            {
-                title  : 'Dentist',
-                start  : '2018-04-19T12:45:00',
-                end  : '2018-04-19T13:00:00',
-                allDay : false // will make the time show
-              },
-              {
-                title  : 'Dentist',
-                start  : '2018-04-19T11:30:00',
-                end  : '2018-04-19T12:30:00',
-                allDay : false // will make the time show
-              },
-  
-              {
-                  title  : 'ttt',
-                  start  : '2018-04-19T14:30:00',
-                  end  : '2018-04-19T15:30:00',
-                  allDay : false // will make the time show
-                },
-                {
-              title  : 'Dentist',
-              start  : '2018-04-19T15:30:00',
-              end  : '2018-04-19T16:30:00',
-              allDay : false // will make the time show
-            },
-
-            {
-                title  : 'ttt',
-                start  : '2018-04-19T16:30:00',
-                end  : '2018-04-19T17:45:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'Dentist',
-                start  : '2018-04-19T17:45:00',
-                end  : '2018-04-19T18:00:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'ttt',
-                start  : '2018-04-19T18:00:00',
-                end  : '2018-04-19T18:15:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'Dentist',
-                start  : '2018-04-19T18:30:00',
-                end  : '2018-04-19T19:45:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'ttt',
-                start  : '2018-04-19T19:45:00',
-                end  : '2018-04-19T20:00:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'Dentist',
-                start  : '2018-04-19T20:00:00',
-                end  : '2018-04-19T20:30:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'ttt',
-                start  : '2018-04-19T20:30:00',
-                end  : '2018-04-19T20:45:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'Dentist',
-                start  : '2018-04-19T21:00:00',
-                end  : '2018-04-19T21:15:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'ttt',
-                start  : '2018-04-19T21:15:00',
-                end  : '2018-04-19T21:30:00',
-                allDay : false // will make the time show
-            },
-            {
-                title  : 'Dentist',
-                start  : '2018-04-19T21:30:00',
-                end  : '2018-04-19T21:45:00',
-                allDay : false // will make the time show
-            }    
-          ]
         })
       });
     }
