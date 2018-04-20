@@ -93,4 +93,10 @@
     <sqlFile path="V2.17_PROCEDURE_INSERT_SCHEDULE_RECORD.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
   </changeSet>
 
+  <changeSet author="Maksym Sikorskyi" id="V2.18">
+    <sqlFile path="V2.18_CREATE_TABLES_RULES_AND_RULESETS.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.18_PROCEDURES_FOR_RULES.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+    <sqlFile path="V2.18_PROCEDURES_FOR_RULESETS.sql" endDelimiter="\nGO" encoding="UTF-8" splitStatements="true" relativeToChangelogFile="true"/>
+  </changeSet>
+
 </databaseChangeLog>
