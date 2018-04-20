@@ -9,6 +9,7 @@ namespace Entities.Services
         List<string[]> GetProfessions(bool isStatic);
 
         List<string[]> GetDoctorsByProfession(string profession);
+
         List<string[]> GetDoctorsByProfessionId(int professionId);
     }
 }

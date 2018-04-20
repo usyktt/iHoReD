@@ -20,7 +20,7 @@ namespace Entities.Services
         {
             var password_hash = Hashing.HashingPassword(password);
 
-            var regInfo = new Dictionary<string, string>()
+            var regInfo = new Dictionary<string, object>()
             {
                 { "FIRSTNAME", firstname},
                 { "LASTNAME", lastname},
@@ -29,7 +29,7 @@ namespace Entities.Services
             };
             var cmd = "REGISTER_USER";
 
-            _dbContext.InsertNewUser(cmd, regInfo);
+            _dbContext.Insert(cmd, regInfo);
         }
 
         public User GetUserInfo(string email)
