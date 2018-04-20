@@ -18,6 +18,7 @@ namespace HoReD.Models
 
         [Required(AllowEmptyStrings = false)]
         [EmailAddress]
+        [MinLength(2)]
         [MaxLength(40)]
         public string Email { get; set; }
 

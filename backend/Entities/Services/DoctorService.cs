@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 
 namespace Entities.Services
 {
@@ -96,5 +98,40 @@ namespace Entities.Services
             _dbContext.Dispose();
             return list;
         }
+
+        public List<string[]> GetDoctorSchedule(int doctorId)
+        {
+            const string cmd = "GET_WORKING_HOURS";
+            var param = new Dictionary<string, object>()
+            {
+                {"@IDDoctors", doctorId}
+            };
+            var str = _dbContext.ExecuteSqlQuery(cmd, '*', param);
+            var result = new List<TimeSpan>();
+            var values = str.Split('*');
+            var starttime = TimeSpan.Parse(values[0]);
+            var endtime = TimeSpan.Parse(values[1]); 
+            TimeSpan ts = TimeSpan.FromMinutes(30);
+            while (starttime < endtime)
+            {
+                starttime = starttime.Add(ts);
+                result.Add(starttime);
+            }
+           
+            var list = new List<string[]>();
+            string dt = DateTime.Now.ToString("yyyy-MM-dd");
+            for (int i = 0, j = 0; i < result.Count - 1; i += 1)
+            {
+                string[] name = { dt + "T" + result[i].ToString(), dt + "T" + result[++j].ToString() };
+                list.Add(name);
+
+            }
+             _dbContext.Dispose();
+            return list;
+        }
+
+       
+
+
     }
 }

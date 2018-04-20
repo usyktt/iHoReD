@@ -62,5 +62,10 @@ namespace Entities.Services
             list.Add(prof2);
             return list;
         }
+
+        public List<string[]> GetDoctorSchedule(int doctorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
