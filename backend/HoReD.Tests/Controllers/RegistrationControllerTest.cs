@@ -16,51 +16,6 @@ using System.Linq;
 
 namespace HoReD.Tests.Controllers
 {
-
-<<<<<<< HEAD
-    //[TestFixture]
-    //public class RegistrationControllerTest
-    //{
-    //    Mock<IUserService> mock;
-
-    //    [SetUp]
-    //    public void SetUp()
-    //    {
-    //        mock = new Mock<IUserService>();
-    //    }
-
-    //    [Test]
-    //    public void CreateNewUser_ReturnOK()
-    //    {
-    //        var controller=new RegistrationController();
-    //        var model = GetFakeBindingModel();
-    //        IHttpActionResult result = controller.CreateNewUser(model);
-    //        var contentResult = result as NegotiatedContentResult<RegistrationBindingModel>;
-    //        //Assert.IsNotNull(result);
-    //        Assert.AreEqual(HttpStatusCode.Accepted, contentResult.StatusCode);
-    //        //Assert.That(() => controller.CreateNewUser(model),
-    //        //    Throws.TypeOf<NullReferenceException>());
-
-    //        //Assert.IsNotNull(contentResult.Content);
-
-    //    }
-
-    //    [Test]
-    //    public void CreateNewUser_Email_IsValid()
-    //    {
-    //        var model = new RegistrationBindingModel()
-    //        {
-    //            FirstName = "TestFirstname",
-    //            LastName = "testLastname",
-    //            Email = "",
-    //            Password = "testPassword",
-    //            Phone = "testPhone"
-    //        };
-    //        var controller = new RegistrationController();
-    //        var result = controller.CreateNewUser(model);
-    //        Assert.IsInstanceOf<UnauthorizedResult>(result);
-    //    }
-=======
     [TestFixture]
     public class RegistrationControllerTest
     {
@@ -223,7 +178,6 @@ namespace HoReD.Tests.Controllers
 
             Assert.IsTrue(controller.ModelState.IsValid);
         }
->>>>>>> b620b13813df5b9f3de5b453be31a55794ece4fe
 
         [Test]
         public void CreateNewUser_Phone_IsInvalid()
@@ -269,33 +223,17 @@ namespace HoReD.Tests.Controllers
             Assert.IsTrue(controller.ModelState.IsValid);
         }
 
-<<<<<<< HEAD
-    //    public RegistrationBindingModel GetFakeBindingModel()
-    //    {
-    //        var testParameter = new RegistrationBindingModel()
-    //        {
-    //            FirstName = "TestFirstname",
-    //            LastName = "TestLastname",
-    //            Email = "testEmail@ukr.net",
-    //            Password = "testPassword1$",
-    //            Phone = "0639637918"
-    //        };
-    //        return testParameter;
-    //    }
-    //}
-=======
         public RegistrationBindingModel GetFakeBindingModel()
         {
             var testParameter = new RegistrationBindingModel()
             {
-                FirstName = "testFirstName",
-                LastName = "testLastName",
-                Email = "olya@ukr.net",
+                FirstName = "TestFirstname",
+                LastName = "TestLastname",
+                Email = "testEmail@ukr.net",
                 Password = "testPassword1$",
-                Phone = "0639639999"
+                Phone = "0639637918"
             };
             return testParameter;
         }
     }
->>>>>>> b620b13813df5b9f3de5b453be31a55794ece4fe
 }
